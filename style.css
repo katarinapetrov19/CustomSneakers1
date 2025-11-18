@@ -701,18 +701,38 @@ a.gallery-item {
 }
 
 /* Footer */
+footer,
+footer.footer,
 .footer {
-    background-color: #e8e8e8;
-    color: #888;
+    background-color: #1a1a1a !important;
+    background: #1a1a1a !important;
+    color: #e8e8e8 !important;
     text-align: center;
-    padding: 3rem 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 3rem 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0 !important;
 }
 
+footer p,
+footer.footer p,
 .footer p {
     font-size: 0.85rem;
     font-weight: 300;
     letter-spacing: 0.5px;
+    color: #e8e8e8 !important;
+}
+
+footer .container,
+footer.footer .container,
+.footer .container {
+    color: #e8e8e8 !important;
+    background-color: transparent !important;
+}
+
+footer *,
+footer.footer *,
+.footer * {
+    color: #e8e8e8 !important;
 }
 
 /* Project Page Styles */

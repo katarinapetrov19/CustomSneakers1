@@ -176,14 +176,16 @@
             const sectionTop = rect.top;
             const sectionHeight = rect.height;
             
-            // Start transition when section is 50% visible
-            const triggerPoint = windowHeight * 0.5;
-            const endPoint = -sectionHeight * 0.3; // End transition when section is 30% scrolled past
+            // Start transition when section is 70% visible (earlier trigger)
+            const triggerPoint = windowHeight * 0.7;
+            const endPoint = -sectionHeight * 0.1; // End transition when section is 10% scrolled past (faster completion)
             
-            // Calculate progress (0 to 1)
+            // Calculate progress (0 to 1) with faster transition
             let progress = 0;
             if (sectionTop < triggerPoint && sectionTop > endPoint) {
-                progress = 1 - (sectionTop - endPoint) / (triggerPoint - endPoint);
+                // Apply easing for faster transition (cubic ease-in)
+                const rawProgress = 1 - (sectionTop - endPoint) / (triggerPoint - endPoint);
+                progress = rawProgress * rawProgress * rawProgress; // Cubic easing for faster transition
             } else if (sectionTop <= endPoint) {
                 progress = 1;
             }
