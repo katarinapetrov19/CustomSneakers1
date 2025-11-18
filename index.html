@@ -435,31 +435,44 @@
                 isHovering = true;
                 
                 // Determine scale based on screen size
-                let scaleValue = 2.0; // Default for desktop
+                let scaleValue = 1.5; // Default for desktop
                 if (window.innerWidth >= 1024 && window.innerWidth < 1440) {
-                    scaleValue = 2.2; // Laptop
+                    scaleValue = 1.6; // Laptop
                 } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
-                    scaleValue = 2.0; // Medium-large desktop
+                    scaleValue = 1.5; // Medium-large desktop
                 } else if (window.innerWidth >= 1920) {
-                    scaleValue = 2.0; // Large desktop
+                    scaleValue = 1.4; // Large desktop (reduced for very large screens)
                 }
                 
-                // Center the item on the page
+                // Center the item on the page (both horizontally and vertically)
                 const rect = item.getBoundingClientRect();
-                const centerX = window.innerWidth / 2;
-                const centerY = window.innerHeight / 2;
+                const viewportCenterX = window.innerWidth / 2;
+                const viewportCenterY = window.innerHeight / 2;
+                
+                // Calculate the item's current center
                 const itemCenterX = rect.left + rect.width / 2;
                 const itemCenterY = rect.top + rect.height / 2;
                 
-                const offsetX = centerX - itemCenterX;
-                const offsetY = centerY - itemCenterY;
+                // Calculate offset needed to move item center to viewport center
+                // After scaling, the center will remain at the same relative position
+                const offsetX = viewportCenterX - itemCenterX;
+                const offsetY = viewportCenterY - itemCenterY;
                 
-                // Store original transform for reset
+                // Store original values for reset
                 item.dataset.originalTransform = item.style.transform || '';
+                item.dataset.originalPosition = item.style.position || '';
+                item.dataset.originalLeft = item.style.left || '';
+                item.dataset.originalTop = item.style.top || '';
+                item.dataset.originalWidth = item.style.width || '';
+                item.dataset.originalTransformOrigin = item.style.transformOrigin || '';
+                
+                // Position and center the item
                 item.style.position = 'fixed';
                 item.style.left = `${rect.left}px`;
                 item.style.top = `${rect.top}px`;
                 item.style.width = `${rect.width}px`;
+                item.style.transformOrigin = 'center center';
+                // Translate to center, then scale (order matters: translate first, then scale)
                 item.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleValue})`;
                 item.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
                 
@@ -478,12 +491,18 @@
                 stopAnimation();
                 
                 // Reset positioning
-                item.style.position = '';
-                item.style.left = '';
-                item.style.top = '';
-                item.style.width = '';
+                item.style.position = item.dataset.originalPosition || '';
+                item.style.left = item.dataset.originalLeft || '';
+                item.style.top = item.dataset.originalTop || '';
+                item.style.width = item.dataset.originalWidth || '';
                 item.style.transform = item.dataset.originalTransform || '';
+                item.style.transformOrigin = item.dataset.originalTransformOrigin || '';
                 delete item.dataset.originalTransform;
+                delete item.dataset.originalPosition;
+                delete item.dataset.originalLeft;
+                delete item.dataset.originalTop;
+                delete item.dataset.originalWidth;
+                delete item.dataset.originalTransformOrigin;
             });
         });
     </script>
