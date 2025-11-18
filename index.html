@@ -156,8 +156,128 @@
         // Reset positions when mouse leaves
         hero.addEventListener('mouseleave', () => {
             letters.forEach(letter => {
-                letter.style.transform = 'translate(0, 0)';
+                if (!letter.classList.contains('exploding')) {
+                    letter.style.transform = 'translate(0, 0)';
+                }
             });
+        });
+
+        // Function to reset letters to original state
+        function resetLetters() {
+            letters.forEach(letter => {
+                letter.classList.remove('exploding');
+                letter.classList.add('resetting');
+                letter.style.transform = 'translate(0, 0)';
+                letter.style.opacity = '1';
+            });
+            
+            // Remove resetting class after animation completes
+            setTimeout(() => {
+                letters.forEach(letter => {
+                    letter.classList.remove('resetting');
+                });
+            }, 800);
+            
+            isAnimating = false;
+        }
+
+        // Check if hero section is visible and reset letters if needed
+        function checkHeroVisibility() {
+            const heroRect = hero.getBoundingClientRect();
+            // Check if hero section is mostly visible (at least 50% in viewport)
+            const heroVisibleHeight = Math.min(heroRect.bottom, window.innerHeight) - Math.max(heroRect.top, 0);
+            const isHeroVisible = heroVisibleHeight > window.innerHeight * 0.5;
+            
+            // If hero is visible and letters are exploded, reset them
+            if (isHeroVisible && isAnimating) {
+                resetLetters();
+            }
+        }
+
+        // Listen for scroll to reset letters when hero comes back into view
+        window.addEventListener('scroll', checkHeroVisibility);
+        window.addEventListener('resize', checkHeroVisibility);
+
+        // Click explosion animation
+        let isAnimating = false;
+        heroTitle.addEventListener('click', (e) => {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            // Remove mouse move listener during animation
+            const originalMouseMove = hero.onmousemove;
+            hero.onmousemove = null;
+            
+            // Get center of screen
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            // Explode letters
+            letters.forEach((letter, index) => {
+                letter.classList.add('exploding');
+                
+                const rect = letter.getBoundingClientRect();
+                const letterCenterX = rect.left + rect.width / 2;
+                const letterCenterY = rect.top + rect.height / 2;
+                
+                // Calculate direction from center to letter
+                const distX = letterCenterX - centerX;
+                const distY = letterCenterY - centerY;
+                const distance = Math.sqrt(distX * distX + distY * distY);
+                
+                // Normalize direction
+                const dirX = distX / distance;
+                const dirY = distY / distance;
+                
+                // Randomize explosion force and direction slightly
+                const force = 800 + Math.random() * 400;
+                const randomAngle = (Math.random() - 0.5) * 0.3; // ±15 degrees
+                const cos = Math.cos(randomAngle);
+                const sin = Math.sin(randomAngle);
+                const finalDirX = dirX * cos - dirY * sin;
+                const finalDirY = dirX * sin + dirY * cos;
+                
+                // Apply explosion transform
+                const moveX = finalDirX * force;
+                const moveY = finalDirY * force;
+                const rotation = (Math.random() - 0.5) * 720; // Random rotation
+                
+                letter.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotation}deg)`;
+                letter.style.opacity = '0';
+            });
+            
+            // Create sneaker reveal element
+            const sneakerReveal = document.createElement('div');
+            sneakerReveal.className = 'sneaker-reveal';
+            const sneakerImg = document.createElement('img');
+            sneakerImg.src = 'img/sneakersRW01.jpg';
+            sneakerImg.alt = 'Sneakers';
+            sneakerReveal.appendChild(sneakerImg);
+            document.body.appendChild(sneakerReveal);
+            
+            // Show sneakers after explosion animation (1.2s)
+            setTimeout(() => {
+                sneakerReveal.classList.add('active');
+            }, 1200);
+            
+            // Scroll to gallery after sneaker appears (1.2s explosion + 0.8s sneaker reveal)
+            setTimeout(() => {
+                const gallerySection = document.getElementById('gallery') || document.querySelector('.gallery');
+                if (gallerySection) {
+                    gallerySection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                
+                // Remove sneaker after scroll starts
+                setTimeout(() => {
+                    sneakerReveal.classList.remove('active');
+                    setTimeout(() => {
+                        sneakerReveal.remove();
+                    }, 800);
+                }, 500);
+            }, 2000);
         });
 
         // Dark theme transition for About section
@@ -313,6 +433,36 @@
             
             item.addEventListener('mouseenter', () => {
                 isHovering = true;
+                
+                // Determine scale based on screen size
+                let scaleValue = 2.0; // Default for desktop
+                if (window.innerWidth >= 1024 && window.innerWidth < 1440) {
+                    scaleValue = 2.2; // Laptop
+                } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
+                    scaleValue = 2.0; // Medium-large desktop
+                } else if (window.innerWidth >= 1920) {
+                    scaleValue = 2.0; // Large desktop
+                }
+                
+                // Center the item on the page
+                const rect = item.getBoundingClientRect();
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const itemCenterX = rect.left + rect.width / 2;
+                const itemCenterY = rect.top + rect.height / 2;
+                
+                const offsetX = centerX - itemCenterX;
+                const offsetY = centerY - itemCenterY;
+                
+                // Store original transform for reset
+                item.dataset.originalTransform = item.style.transform || '';
+                item.style.position = 'fixed';
+                item.style.left = `${rect.left}px`;
+                item.style.top = `${rect.top}px`;
+                item.style.width = `${rect.width}px`;
+                item.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleValue})`;
+                item.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
                 // Wait for scale transition (600ms) before starting animation
                 hoverTimeout = setTimeout(() => {
                     startAnimation();
@@ -326,6 +476,14 @@
                     hoverTimeout = null;
                 }
                 stopAnimation();
+                
+                // Reset positioning
+                item.style.position = '';
+                item.style.left = '';
+                item.style.top = '';
+                item.style.width = '';
+                item.style.transform = item.dataset.originalTransform || '';
+                delete item.dataset.originalTransform;
             });
         });
     </script>
