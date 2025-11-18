@@ -120,7 +120,7 @@ section {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    padding: 0 60px;
+    padding: 0;
     background: #ffffff;
 }
 
@@ -138,13 +138,15 @@ section {
 .hero-graphic-text {
     position: absolute;
     top: 40%;
-    left: 50%;
+    left: 50vw;
     transform: translate(-50%, -50%);
     z-index: 10;
     width: 120vw;
     pointer-events: none;
     text-align: center;
     overflow: visible;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-large-title {
@@ -260,10 +262,10 @@ section {
 
 /* Gallery Section */
 .gallery {
-    padding: 0rem 0 10rem 0;
+    padding: 2rem 0 10rem 0;
     background-color: transparent;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
     overflow: visible;
 }
@@ -278,6 +280,7 @@ section {
     width: 100%;
     overflow: hidden;
     margin-bottom: 5rem;
+    margin-top: -8rem;
     position: relative;
     z-index: 10;
 }
@@ -369,7 +372,7 @@ a.gallery-item {
     opacity: 1 !important;
     z-index: 100;
     position: relative;
-    transform: scale(2.8);
+    transform: scale(2.0);
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -933,7 +936,7 @@ a.gallery-item {
     }
     
     .gallery-item:hover {
-        transform: scale(2.9);
+        transform: scale(2.0);
     }
     
     .gallery-item h3 {
@@ -960,7 +963,7 @@ a.gallery-item {
     }
     
     .gallery-item:hover {
-        transform: scale(3.2);
+        transform: scale(2.2);
     }
     
     .gallery-item h3 {

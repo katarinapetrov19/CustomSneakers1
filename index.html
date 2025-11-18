@@ -142,12 +142,12 @@
                 
                 // Calculate movement based on distance (closer = more movement)
                 const distance = Math.sqrt(distX * distX + distY * distY);
-                const maxDistance = 300; // Influence radius
+                const maxDistance = 500; // Influence radius (increased for larger area)
                 const influence = Math.max(0, 1 - distance / maxDistance);
                 
                 // Apply movement (letters move away from cursor)
-                const moveX = (distX / distance) * influence * -50;
-                const moveY = (distY / distance) * influence * -50;
+                const moveX = (distX / distance) * influence * -120;
+                const moveY = (distY / distance) * influence * -120;
                 
                 letter.style.transform = `translate(${moveX}px, ${moveY}px)`;
             });
