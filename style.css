@@ -388,6 +388,38 @@ a.gallery-item {
     padding: 0.3rem 1rem 1rem 1rem;
 }
 
+.gallery-item .gallery-image-animated {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 50vh;
+    height: auto;
+    width: auto;
+    max-width: 90vw;
+    object-fit: contain;
+    object-position: center top;
+    margin: 0 auto;
+    display: block;
+    padding: 0.3rem 1rem 1rem 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.gallery-item .gallery-image-animated.active {
+    opacity: 1;
+}
+
+.gallery-item .gallery-image-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .gallery-item:hover h3 {
     margin-top: -8rem;
     z-index: 101;
