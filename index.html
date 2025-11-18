@@ -225,6 +225,107 @@
         window.addEventListener('scroll', updateAboutTheme);
         window.addEventListener('resize', updateAboutTheme);
         updateAboutTheme(); // Initial call
+
+        // Image animation on hover
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            const imagesData = item.getAttribute('data-images');
+            if (!imagesData) return;
+            
+            const images = JSON.parse(imagesData);
+            const originalImage = item.querySelector('.gallery-image');
+            if (!originalImage || images.length < 2) return;
+            
+            // Wrap original image in container
+            const container = document.createElement('div');
+            container.className = 'gallery-image-container';
+            originalImage.parentNode.insertBefore(container, originalImage);
+            container.appendChild(originalImage);
+            
+            // Create animation layers for additional images
+            const animationLayers = [];
+            images.slice(1).forEach((imgSrc, index) => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.className = 'gallery-image-animated';
+                img.alt = originalImage.alt;
+                container.appendChild(img);
+                animationLayers.push(img);
+            });
+            
+            let animationInterval = null;
+            let currentIndex = 0;
+            let isHovering = false;
+            let hoverTimeout = null;
+            
+            // Wait for scale transition to complete before starting animation
+            const startAnimation = () => {
+                if (animationInterval) return;
+                
+                // Preload all images
+                images.forEach(src => {
+                    const img = new Image();
+                    img.src = src;
+                });
+                
+                // Start fast looping animation (300ms per image)
+                animationInterval = setInterval(() => {
+                    if (!isHovering) {
+                        clearInterval(animationInterval);
+                        animationInterval = null;
+                        return;
+                    }
+                    
+                    // Hide current image
+                    if (currentIndex === 0) {
+                        originalImage.style.opacity = '0';
+                    } else {
+                        animationLayers[currentIndex - 1].classList.remove('active');
+                    }
+                    
+                    // Show next image
+                    currentIndex = (currentIndex + 1) % images.length;
+                    
+                    if (currentIndex === 0) {
+                        originalImage.style.opacity = '1';
+                    } else {
+                        animationLayers[currentIndex - 1].classList.add('active');
+                    }
+                }, 300); // Fast animation: 300ms per image
+            };
+            
+            const stopAnimation = () => {
+                if (animationInterval) {
+                    clearInterval(animationInterval);
+                    animationInterval = null;
+                }
+                
+                // Reset to original image
+                originalImage.style.opacity = '1';
+                animationLayers.forEach(layer => {
+                    layer.classList.remove('active');
+                });
+                currentIndex = 0;
+            };
+            
+            item.addEventListener('mouseenter', () => {
+                isHovering = true;
+                // Wait for scale transition (600ms) before starting animation
+                hoverTimeout = setTimeout(() => {
+                    startAnimation();
+                }, 650);
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                isHovering = false;
+                if (hoverTimeout) {
+                    clearTimeout(hoverTimeout);
+                    hoverTimeout = null;
+                }
+                stopAnimation();
+            });
+        });
     </script>
 </body>
 </html>
