@@ -120,12 +120,14 @@
 
         // Duplicate projects multiple times for seamless infinite scroll
         function duplicateProjects() {
-            // Create 3 copies for seamless looping
+            // Create 2 copies for seamless looping
             for (let i = 0; i < 2; i++) {
                 const clone = projectsWrapper.cloneNode(true);
                 clone.id = `projectsWrapperClone${i}`;
-                // Keep original data-project attributes - don't reset them
-                // The intersection observer will work correctly with original values
+                // cloneNode(true) preserves all attributes including data-project
+                // The data-project attributes (0, 1, 2, 3) are automatically preserved
+                // This allows the intersection observer to correctly identify projects
+                // regardless of which duplicated set is visible
                 galleryScroll.appendChild(clone);
             }
         }
