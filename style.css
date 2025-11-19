@@ -1,5 +1,11 @@
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+/* Custom Font */
+@font-face {
+    font-family: 'Kelsi Fill';
+    src: url('font/Kelsi - DCU/Kelsi-fill.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* Reset and Base Styles */
 * {
@@ -21,7 +27,7 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
 }
 
 .container {
@@ -84,7 +90,7 @@ section {
 }
 
 .logo {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 1.2rem;
     font-weight: 400;
     color: #2a2a2a;
@@ -150,7 +156,7 @@ section {
 }
 
 .hero-large-title {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 32vw;
     font-weight: 400;
     line-height: 0.65;
@@ -280,7 +286,7 @@ section {
 
 /* Section Titles */
 .section-title {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 3rem;
     margin-bottom: 5rem;
     text-align: center;
@@ -331,7 +337,7 @@ section {
 }
 
 .gallery-title-carousel .gallery-title {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 9rem;
     color: #2a2a2a;
     font-weight: 400;
@@ -557,7 +563,7 @@ a.gallery-item {
 }
 
 .gallery-item h3 {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 1.4rem;
     color: #2a2a2a;
     font-weight: 400;
@@ -782,7 +788,7 @@ footer.footer *,
 }
 
 .project-title {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 3.5rem;
     font-weight: 400;
     color: #2a2a2a;
@@ -1347,7 +1353,7 @@ footer.footer *,
 }
 
 .current-project-title {
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Kelsi Fill', cursive;
     font-size: 4rem;
     color: #2a2a2a;
     margin-bottom: 2rem;
