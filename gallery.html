@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Artist Portfolio</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Infinite Scroll Gallery -->
+    <section class="infinite-gallery">
+        <div class="gallery-layout">
+            <!-- Left Column: Project Info -->
+            <div class="gallery-info">
+                <div class="project-info-sticky">
+                    <h2 class="current-project-title" id="currentProjectTitle">Urban Street Collection</h2>
+                    <p class="current-project-description" id="currentProjectDescription">
+                        A series of hand-painted custom sneakers inspired by urban landscapes and street art culture. 
+                        Each pair tells a unique story of the city—from weathered brick walls and graffiti tags to the 
+                        energy of bustling streets. Using premium leather paints and protective finishes, these pieces 
+                        blend wearable art with everyday functionality.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Scrollable Projects -->
+            <div class="gallery-scroll-container" id="galleryScroll">
+                <div class="gallery-projects-wrapper" id="projectsWrapper">
+                    <!-- Project 1: Urban Street Collection -->
+                    <div class="gallery-project" data-project="0">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW01.jpg" alt="Urban Street Collection" class="img-large img-full-width">
+                            <div class="image-row">
+                                <img src="img/sneakersRW01a.png" alt="Urban Street Collection" class="img-medium">
+                                <img src="img/sneakersRW01b.png" alt="Urban Street Collection" class="img-small">
+                            </div>
+                            <img src="img/sneakersRW01.jpg" alt="Urban Street Collection" class="img-medium img-offset-right">
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Nature Series -->
+                    <div class="gallery-project" data-project="1">
+                        <div class="gallery-project-images">
+                            <div class="image-row">
+                                <img src="img/sneakersRW02.png" alt="Nature Series" class="img-small">
+                                <img src="img/sneakersRW02a.png" alt="Nature Series" class="img-large">
+                            </div>
+                            <img src="img/sneakersRW02b.png" alt="Nature Series" class="img-medium img-offset-left">
+                            <img src="img/sneakersRW02.png" alt="Nature Series" class="img-small img-offset-right">
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Abstract Expression -->
+                    <div class="gallery-project" data-project="2">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW04.png" alt="Abstract Expression" class="img-medium img-offset-left">
+                            <img src="img/sneakersRW04c.png" alt="Abstract Expression" class="img-large img-full-width">
+                            <div class="image-row">
+                                <img src="img/sneakersRW04b.png" alt="Abstract Expression" class="img-small">
+                                <img src="img/sneakersRW04.png" alt="Abstract Expression" class="img-medium">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Downtown Wall Mural -->
+                    <div class="gallery-project" data-project="3">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW03.png" alt="Downtown Wall Mural" class="img-large img-full-width">
+                            <div class="image-row">
+                                <img src="img/sneakersRW03a.png" alt="Downtown Wall Mural" class="img-small">
+                                <img src="img/sneakersRW03b.png" alt="Downtown Wall Mural" class="img-medium">
+                            </div>
+                            <img src="img/sneakersRW03.png" alt="Downtown Wall Mural" class="img-large img-offset-left">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Project data
+        const projects = [
+            {
+                title: "Urban Street Collection",
+                description: "A series of hand-painted custom sneakers inspired by urban landscapes and street art culture. Each pair tells a unique story of the city—from weathered brick walls and graffiti tags to the energy of bustling streets. Using premium leather paints and protective finishes, these pieces blend wearable art with everyday functionality."
+            },
+            {
+                title: "Nature Series",
+                description: "Botanical artwork on canvas shoes featuring vibrant tie-dye patterns and mystical symbols. These pieces celebrate the connection between nature and spirituality, with hand-painted designs that blend organic flow with sacred geometry. Each pair is a unique meditation on color and form."
+            },
+            {
+                title: "Abstract Expression",
+                description: "Bold colors and geometric patterns merge in this futuristic tech-inspired collection. Circuit board aesthetics meet street style, with intricate hand-painted details that glow with neon energy. Each design explores the intersection of digital culture and analog craftsmanship."
+            },
+            {
+                title: "Downtown Wall Mural",
+                description: "Large-scale street art installation meets custom footwear. Inspired by Hokusai's Great Wave, this collection brings traditional Japanese art into urban street culture. The flowing waves and intricate details create a stunning visual narrative that bridges Eastern aesthetics with contemporary sneaker design."
+            }
+        ];
+
+        const projectsWrapper = document.getElementById('projectsWrapper');
+        const galleryScroll = document.getElementById('galleryScroll');
+        const currentProjectTitle = document.getElementById('currentProjectTitle');
+        const currentProjectDescription = document.getElementById('currentProjectDescription');
+        const projectElements = document.querySelectorAll('.gallery-project');
+
+        // Duplicate projects multiple times for seamless infinite scroll
+        function duplicateProjects() {
+            // Create 3 copies for seamless looping
+            for (let i = 0; i < 2; i++) {
+                const clone = projectsWrapper.cloneNode(true);
+                clone.id = `projectsWrapperClone${i}`;
+                // Update data-project attributes in clone
+                clone.querySelectorAll('.gallery-project').forEach((project, idx) => {
+                    project.dataset.project = idx;
+                });
+                galleryScroll.appendChild(clone);
+            }
+        }
+
+        // Initialize infinite scroll
+        duplicateProjects();
+
+        let isScrolling = false;
+
+        // Intersection Observer for project detection
+        const observerOptions = {
+            root: galleryScroll,
+            rootMargin: '-30% 0px -30% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isScrolling) {
+                    const projectIndex = parseInt(entry.target.dataset.project);
+                    if (projectIndex >= 0 && projectIndex < projects.length) {
+                        currentProjectTitle.textContent = projects[projectIndex].title;
+                        currentProjectDescription.textContent = projects[projectIndex].description;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project elements
+        function observeProjects() {
+            document.querySelectorAll('.gallery-project').forEach(project => {
+                observer.observe(project);
+            });
+        }
+
+        // Calculate project height
+        function getProjectHeight() {
+            return galleryScroll.clientHeight; // Each project is 100vh
+        }
+
+        // Handle infinite scroll
+        function handleInfiniteScroll() {
+            if (isScrolling) return;
+            
+            const scrollTop = galleryScroll.scrollTop;
+            const clientHeight = galleryScroll.clientHeight;
+            const scrollHeight = galleryScroll.scrollHeight;
+            const projectHeight = getProjectHeight();
+            const totalProjects = 4;
+            const singleSetHeight = projectHeight * totalProjects;
+
+            // If scrolled past the first set, jump back to equivalent position in first set
+            if (scrollTop >= singleSetHeight) {
+                isScrolling = true;
+                const newScrollTop = scrollTop - singleSetHeight;
+                galleryScroll.scrollTop = newScrollTop;
+                requestAnimationFrame(() => {
+                    isScrolling = false;
+                });
+            }
+            // If scrolled before start (going up), jump to equivalent position in last set
+            else if (scrollTop <= 0 && scrollHeight > clientHeight * 2) {
+                isScrolling = true;
+                galleryScroll.scrollTop = singleSetHeight + scrollTop;
+                requestAnimationFrame(() => {
+                    isScrolling = false;
+                });
+            }
+        }
+
+        // Initial setup
+        observeProjects();
+        
+        // Set initial scroll position to start of middle set for seamless infinite scroll
+        // This happens once on load, then user controls all scrolling
+        window.addEventListener('load', () => {
+            const projectHeight = getProjectHeight();
+            galleryScroll.scrollTop = projectHeight * 4; // Start in the middle set
+        });
+
+        // Scroll event for infinite scroll - only triggers on user scroll
+        galleryScroll.addEventListener('scroll', handleInfiniteScroll, { passive: true });
+
+        // Re-observe after clones are added
+        setTimeout(observeProjects, 200);
+    </script>
+</body>
+</html>
+

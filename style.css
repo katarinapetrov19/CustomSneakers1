@@ -1317,3 +1317,216 @@ footer.footer *,
     }
 }
 
+/* Infinite Scroll Gallery */
+.infinite-gallery {
+    min-height: 100vh;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.gallery-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    position: relative;
+}
+
+.gallery-info {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    background-color: #ffffff;
+}
+
+.project-info-sticky {
+    max-width: 500px;
+}
+
+.current-project-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 4rem;
+    color: #2a2a2a;
+    margin-bottom: 2rem;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+}
+
+.current-project-description {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #555;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.gallery-scroll-container {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: visible;
+    scroll-behavior: auto;
+    scroll-snap-type: y proximity;
+}
+
+.gallery-projects-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-project {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: visible;
+}
+
+.gallery-project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    width: 100%;
+    max-width: 900px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.gallery-project-images > * {
+    margin: 0;
+}
+
+/* Image rows for side-by-side placement */
+.gallery-project-images .image-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0;
+}
+
+.gallery-project-images .image-row:nth-child(even) {
+    justify-content: flex-end;
+}
+
+.gallery-project-images .image-row img {
+    flex-shrink: 0;
+}
+
+.gallery-project-images img {
+    height: auto;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+    width: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.gallery-project-images .img-small {
+    max-height: 25vh;
+    max-width: 40%;
+}
+
+.gallery-project-images .img-medium {
+    max-height: 35vh;
+    max-width: 60%;
+}
+
+.gallery-project-images .img-large {
+    max-height: 50vh;
+    max-width: 80%;
+}
+
+/* Full width images */
+.gallery-project-images .img-full-width {
+    width: 100%;
+    max-width: 100%;
+    align-self: stretch;
+    max-height: 55vh;
+}
+
+/* Asymmetrical offsets - subtle positioning without overlaps */
+.gallery-project-images .img-offset-left {
+    margin-left: 1rem;
+    align-self: flex-start;
+    max-width: calc(100% - 1rem);
+}
+
+.gallery-project-images .img-offset-right {
+    margin-right: 1rem;
+    align-self: flex-end;
+    max-width: calc(100% - 1rem);
+}
+
+/* Image row specific sizing - ensure no overlaps */
+.gallery-project-images .image-row .img-small {
+    max-height: 22vh;
+    max-width: 30%;
+    flex: 0 0 auto;
+}
+
+.gallery-project-images .image-row .img-medium {
+    max-height: 32vh;
+    max-width: 45%;
+    flex: 0 0 auto;
+}
+
+.gallery-project-images .image-row .img-large {
+    max-height: 45vh;
+    max-width: 60%;
+    flex: 0 0 auto;
+}
+
+/* Responsive for infinite gallery */
+@media (max-width: 1024px) {
+    .gallery-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-info {
+        position: relative;
+        height: auto;
+        min-height: 50vh;
+    }
+    
+    .gallery-scroll-container {
+        height: 50vh;
+    }
+    
+    .current-project-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-info {
+        padding: 3rem 2rem;
+    }
+    
+    .current-project-title {
+        font-size: 2.5rem;
+    }
+    
+    .current-project-description {
+        font-size: 1rem;
+    }
+    
+    .gallery-project {
+        padding: 3rem 2rem;
+    }
+    
+    .gallery-project-images {
+        gap: 2rem;
+    }
+}
+
