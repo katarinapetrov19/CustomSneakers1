@@ -124,10 +124,8 @@
             for (let i = 0; i < 2; i++) {
                 const clone = projectsWrapper.cloneNode(true);
                 clone.id = `projectsWrapperClone${i}`;
-                // Update data-project attributes in clone
-                clone.querySelectorAll('.gallery-project').forEach((project, idx) => {
-                    project.dataset.project = idx;
-                });
+                // Keep original data-project attributes - don't reset them
+                // The intersection observer will work correctly with original values
                 galleryScroll.appendChild(clone);
             }
         }

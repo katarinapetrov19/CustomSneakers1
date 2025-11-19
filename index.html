@@ -142,6 +142,13 @@
                 
                 // Calculate movement based on distance (closer = more movement)
                 const distance = Math.sqrt(distX * distX + distY * distY);
+                
+                // Guard against division by zero when cursor is exactly at letter center
+                if (distance === 0) {
+                    letter.style.transform = 'translate(0, 0)';
+                    return;
+                }
+                
                 const maxDistance = 500; // Influence radius (increased for larger area)
                 const influence = Math.max(0, 1 - distance / maxDistance);
                 
@@ -430,9 +437,10 @@
             let isHovering = false;
             let hoverTimeout = null;
             
-            // Wait for scale transition to complete before starting animation
             const startAnimation = () => {
-                if (animationInterval) return;
+                if (animationInterval) {
+                    clearInterval(animationInterval);
+                }
                 
                 // Preload all images
                 images.forEach(src => {
@@ -440,30 +448,35 @@
                     img.src = src;
                 });
                 
-                // Start fast looping animation (300ms per image)
-                animationInterval = setInterval(() => {
-                    if (!isHovering) {
-                        clearInterval(animationInterval);
-                        animationInterval = null;
-                        return;
-                    }
+                // Small delay to ensure hover state is stable
+                setTimeout(() => {
+                    if (!isHovering) return;
                     
-                    // Hide current image
-                    if (currentIndex === 0) {
-                        originalImage.style.opacity = '0';
-                    } else {
-                        animationLayers[currentIndex - 1].classList.remove('active');
-                    }
-                    
-                    // Show next image
-                    currentIndex = (currentIndex + 1) % images.length;
-                    
-                    if (currentIndex === 0) {
-                        originalImage.style.opacity = '1';
-                    } else {
-                        animationLayers[currentIndex - 1].classList.add('active');
-                    }
-                }, 300); // Fast animation: 300ms per image
+                    // Start fast looping animation (300ms per image)
+                    animationInterval = setInterval(() => {
+                        if (!isHovering) {
+                            clearInterval(animationInterval);
+                            animationInterval = null;
+                            return;
+                        }
+                        
+                        // Hide current image
+                        if (currentIndex === 0) {
+                            originalImage.style.opacity = '0';
+                        } else {
+                            animationLayers[currentIndex - 1].classList.remove('active');
+                        }
+                        
+                        // Show next image
+                        currentIndex = (currentIndex + 1) % images.length;
+                        
+                        if (currentIndex === 0) {
+                            originalImage.style.opacity = '1';
+                        } else {
+                            animationLayers[currentIndex - 1].classList.add('active');
+                        }
+                    }, 300); // Fast animation: 300ms per image
+                }, 100);
             };
             
             const stopAnimation = () => {
