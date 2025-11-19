@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Sneakers Artist Portfolio</title>
+    <title>PIEPPIEPSEPPL</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">Artist Portfolio</div>
+            <div class="logo">PIEPPIEPSEPPL</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
@@ -246,38 +246,87 @@
                 letter.style.opacity = '0';
             });
             
-            // Create sneaker reveal element
+            // Collect all shoe images from gallery items
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const allShoeImages = [];
+            galleryItems.forEach(item => {
+                const dataImages = item.getAttribute('data-images');
+                if (dataImages) {
+                    try {
+                        const images = JSON.parse(dataImages);
+                        images.forEach(img => allShoeImages.push(img));
+                    } catch (e) {
+                        console.error('Error parsing data-images:', e);
+                    }
+                }
+            });
+            
+            // Create sneaker reveal container
             const sneakerReveal = document.createElement('div');
             sneakerReveal.className = 'sneaker-reveal';
-            const sneakerImg = document.createElement('img');
-            sneakerImg.src = 'img/sneakersRW01.jpg';
-            sneakerImg.alt = 'Sneakers';
-            sneakerReveal.appendChild(sneakerImg);
             document.body.appendChild(sneakerReveal);
             
-            // Show sneakers after explosion animation (1.2s)
+            // Show first sneaker after explosion animation (1.2s)
             setTimeout(() => {
                 sneakerReveal.classList.add('active');
-            }, 1200);
-            
-            // Scroll to gallery after sneaker appears (1.2s explosion + 0.8s sneaker reveal)
-            setTimeout(() => {
-                const gallerySection = document.getElementById('gallery') || document.querySelector('.gallery');
-                if (gallerySection) {
-                    gallerySection.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
                 
-                // Remove sneaker after scroll starts
+                // Start cycling through all images
+                let currentIndex = 0;
+                let currentImg = null;
+                
+                const cycleInterval = setInterval(() => {
+                    // Fade out current image if exists
+                    if (currentImg) {
+                        currentImg.style.opacity = '0';
+                        setTimeout(() => {
+                            if (currentImg && currentImg.parentNode) {
+                                currentImg.remove();
+                            }
+                        }, 100);
+                    }
+                    
+                    // Create new image with consistent size
+                    const sneakerImg = document.createElement('img');
+                    sneakerImg.src = allShoeImages[currentIndex];
+                    sneakerImg.alt = 'Sneakers';
+                    sneakerImg.style.opacity = '0';
+                    
+                    sneakerReveal.appendChild(sneakerImg);
+                    currentImg = sneakerImg;
+                    
+                    // Fade in new image
+                    setTimeout(() => {
+                        if (sneakerImg.parentNode) {
+                            sneakerImg.style.opacity = '1';
+                        }
+                    }, 10);
+                    
+                    // Move to next image
+                    currentIndex = (currentIndex + 1) % allShoeImages.length;
+                }, 120); // Change image every 120ms for fast animation
+                
+                // Start scrolling to gallery section and fade out animation at the same time
                 setTimeout(() => {
+                    // Start scrolling
+                    const gallerySection = document.getElementById('gallery') || document.querySelector('.gallery');
+                    if (gallerySection) {
+                        gallerySection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    
+                    // Stop cycling images
+                    clearInterval(cycleInterval);
+                    
+                    // Fade out animation
                     sneakerReveal.classList.remove('active');
                     setTimeout(() => {
                         sneakerReveal.remove();
-                    }, 800);
-                }, 500);
-            }, 2000);
+                        isAnimating = false;
+                    }, 500);
+                }, 3000); // Start scroll and fade at 3 seconds
+            }, 1200);
         });
 
         // Dark theme transition for About section
@@ -434,52 +483,8 @@
             item.addEventListener('mouseenter', () => {
                 isHovering = true;
                 
-                // Determine scale based on screen size
-                let scaleValue = 1.5; // Default for desktop
-                if (window.innerWidth >= 1024 && window.innerWidth < 1440) {
-                    scaleValue = 1.6; // Laptop
-                } else if (window.innerWidth >= 1440 && window.innerWidth < 1920) {
-                    scaleValue = 1.5; // Medium-large desktop
-                } else if (window.innerWidth >= 1920) {
-                    scaleValue = 1.4; // Large desktop (reduced for very large screens)
-                }
-                
-                // Center the item on the page (both horizontally and vertically)
-                const rect = item.getBoundingClientRect();
-                const viewportCenterX = window.innerWidth / 2;
-                const viewportCenterY = window.innerHeight / 2;
-                
-                // Calculate the item's current center
-                const itemCenterX = rect.left + rect.width / 2;
-                const itemCenterY = rect.top + rect.height / 2;
-                
-                // Calculate offset needed to move item center to viewport center
-                // After scaling, the center will remain at the same relative position
-                const offsetX = viewportCenterX - itemCenterX;
-                const offsetY = viewportCenterY - itemCenterY;
-                
-                // Store original values for reset
-                item.dataset.originalTransform = item.style.transform || '';
-                item.dataset.originalPosition = item.style.position || '';
-                item.dataset.originalLeft = item.style.left || '';
-                item.dataset.originalTop = item.style.top || '';
-                item.dataset.originalWidth = item.style.width || '';
-                item.dataset.originalTransformOrigin = item.style.transformOrigin || '';
-                
-                // Position and center the item
-                item.style.position = 'fixed';
-                item.style.left = `${rect.left}px`;
-                item.style.top = `${rect.top}px`;
-                item.style.width = `${rect.width}px`;
-                item.style.transformOrigin = 'center center';
-                // Translate to center, then scale (order matters: translate first, then scale)
-                item.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleValue})`;
-                item.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                
-                // Wait for scale transition (600ms) before starting animation
-                hoverTimeout = setTimeout(() => {
-                    startAnimation();
-                }, 650);
+                // Start animation immediately
+                startAnimation();
             });
             
             item.addEventListener('mouseleave', () => {
@@ -489,20 +494,6 @@
                     hoverTimeout = null;
                 }
                 stopAnimation();
-                
-                // Reset positioning
-                item.style.position = item.dataset.originalPosition || '';
-                item.style.left = item.dataset.originalLeft || '';
-                item.style.top = item.dataset.originalTop || '';
-                item.style.width = item.dataset.originalWidth || '';
-                item.style.transform = item.dataset.originalTransform || '';
-                item.style.transformOrigin = item.dataset.originalTransformOrigin || '';
-                delete item.dataset.originalTransform;
-                delete item.dataset.originalPosition;
-                delete item.dataset.originalLeft;
-                delete item.dataset.originalTop;
-                delete item.dataset.originalWidth;
-                delete item.dataset.originalTransformOrigin;
             });
         });
     </script>
