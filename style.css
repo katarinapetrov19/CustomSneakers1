@@ -322,7 +322,7 @@ section {
 
 /* Gallery Section */
 .gallery {
-    padding: 2rem 0 10rem 0;
+    padding: 2rem 0 5rem 0;
     background-color: transparent;
     display: flex;
     align-items: flex-start;
@@ -633,7 +633,7 @@ a.gallery-item {
 
 /* About Section */
 .about {
-    padding: 12rem 0;
+    padding: 6rem 0;
     background-color: #ffffff;
     transition: background-color 0.3s ease;
     position: relative;
