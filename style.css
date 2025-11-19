@@ -1373,7 +1373,7 @@ footer.footer *,
 
 .current-project-title {
     font-family: 'Kelsi Fill', cursive;
-    font-size: 8rem;
+    font-size: 4rem;
     color: #2a2a2a;
     margin-bottom: 2rem;
     letter-spacing: 0.3px;
@@ -1530,7 +1530,7 @@ footer.footer *,
     }
     
     .current-project-title {
-        font-size: 6rem;
+        font-size: 3rem;
     }
 }
 
@@ -1540,7 +1540,7 @@ footer.footer *,
     }
     
     .current-project-title {
-        font-size: 5rem;
+        font-size: 2.5rem;
     }
     
     .current-project-description {
