@@ -1044,6 +1044,10 @@ footer.footer *,
         margin-top: -2rem;
     }
     
+    .gallery-item:hover {
+        transform: scale(1.4);
+    }
+    
     .gallery {
         align-items: flex-start;
         padding-top: 4rem;
