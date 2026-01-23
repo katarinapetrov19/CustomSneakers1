@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIEPPIEPSEPPL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,6 +16,7 @@
             <div class="logo">PIEPPIEPSEPPL</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
+                <li><a href="projects.html">Mail Club</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -31,35 +35,78 @@
         </div>
     </section>
 
+    <!-- Latest Project Section -->
+    <section class="latest-project">
+        <div class="container">
+            <div class="latest-project-header">
+                <a href="gallery.html" class="latest-project-title-link">
+                    <h2 class="section-title latest-project-title-interactive">
+                        Latest Project
+                        <span class="latest-project-arrow">→</span>
+                    </h2>
+                </a>
+            </div>
+            <div class="latest-project-content">
+                <!-- Media: Video or Image -->
+                <!-- To use VIDEO: Keep the video element below and add your video file to video/ folder -->
+                <!-- To use IMAGE: Comment out the video element and uncomment the image element -->
+                <div class="latest-project-media">
+                    <!-- Video Option -->
+                    <video class="latest-project-video" controls autoplay muted loop playsinline preload="auto">
+                        <source src="img/projekt.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- Fallback image if video doesn't load -->
+                    <img src="img/sneakersRW01.jpg" alt="Latest Project" class="latest-project-image fallback-image">
+                    
+                    <!-- Image Option (uncomment to use image instead of video) -->
+                    <!--
+                    <img src="img/sneakersRW01.jpg" alt="Latest Project" class="latest-project-image">
+                    -->
+                    
+                    <!-- Next Project Overlay -->
+                    <div class="next-project-overlay">
+                        <a href="gallery.html" class="next-project-link">
+                            <span class="next-project-text">Next project</span>
+                            <span class="next-project-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Gallery Section -->
     <section id="gallery" class="gallery">
         <div class="container">
             <div class="gallery-title-wrapper">
                 <div class="gallery-title-carousel">
-                    <span class="gallery-title">Featured Projects</span>
-                    <span class="gallery-title">Featured Projects</span>
-                    <span class="gallery-title">Featured Projects</span>
-                    <span class="gallery-title">Featured Projects</span>
-                    <span class="gallery-title">Featured Projects</span>
-                    <span class="gallery-title">Featured Projects</span>
+                    <span class="gallery-title">Mail Club</span>
+                    <span class="gallery-title">Mail Club</span>
+                    <span class="gallery-title">Mail Club</span>
+                    <span class="gallery-title">Mail Club</span>
+                    <span class="gallery-title">Mail Club</span>
+                    <span class="gallery-title">Mail Club</span>
                 </div>
             </div>
             <div class="gallery-grid">
-                <a href="gallery.html" class="gallery-item" data-images='["img/sneakersRW01.jpg","img/sneakersRW01a.png","img/sneakersRW01b.png"]' style="text-decoration: none; color: inherit;">
-                    <img src="img/sneakersRW01.jpg" alt="Urban Street Collection" class="gallery-image">
-                    <h3>URBAN<br>STREET<br><span class="title-last">COLLECTION</span></h3>
+                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
+                    <img src="img/BW.jpg" alt="Mini" class="gallery-image">
+                    <h3>MINI</h3>
+                    <p class="gallery-description">1 artwork (150x120mm)</p>
+                    <p class="gallery-price">8€</p>
                 </a>
-                <a href="gallery.html" class="gallery-item" data-images='["img/sneakersRW02.png","img/sneakersRW02a.png","img/sneakersRW02b.png"]' style="text-decoration: none; color: inherit;">
-                    <img src="img/sneakersRW02.png" alt="Nature Series" class="gallery-image">
-                    <h3>NATURE<br><span class="title-last">SERIES</span></h3>
+                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
+                    <img src="img/head.jpg" alt="Midi" class="gallery-image">
+                    <h3>MIDI</h3>
+                    <p class="gallery-description">2 artworks (150x120mm)</p>
+                    <p class="gallery-price">11€</p>
                 </a>
-                <a href="gallery.html" class="gallery-item" data-images='["img/sneakersRW04.png","img/sneakersRW04c.png","img/sneakersRW04b.png"]' style="text-decoration: none; color: inherit;">
-                    <img src="img/sneakersRW04.png" alt="Abstract Expression" class="gallery-image">
-                    <h3>ABSTRACT<br><span class="title-last">EXPRESSION</span></h3>
-                </a>
-                <a href="gallery.html" class="gallery-item" data-images='["img/sneakersRW03.png","img/sneakersRW03a.png","img/sneakersRW03b.png"]' style="text-decoration: none; color: inherit;">
-                    <img src="img/sneakersRW03.png" alt="Downtown Wall Mural" class="gallery-image">
-                    <h3>DOWNTOWN<br>WALL<br><span class="title-last">MURAL</span></h3>
+                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
+                    <img src="img/Kat.jpg" alt="Maxi" class="gallery-image">
+                    <h3>MAXI</h3>
+                    <p class="gallery-description">3 artworks (150x120mm)</p>
+                    <p class="gallery-price">15€</p>
                 </a>
             </div>
         </div>
@@ -70,10 +117,10 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2 class="section-title">About the Artist</h2>
-                    <p>Hi, I'm Sebastian Wagner, a passionate custom sneaker artist and mural designer based in the heart of the city. With over 5 years of experience in transforming everyday footwear into unique pieces of wearable art, I specialize in hand-painted designs that tell a story.</p>
-                    <p>My work combines street art aesthetics with fine art techniques, creating bold and vibrant designs that stand out. From custom sneakers to large-scale murals, each project is an opportunity to push creative boundaries and bring imagination to life.</p>
-                    <p>I believe that art should be accessible and personal. Whether it's a pair of sneakers that reflects your personality or a mural that transforms a space, I'm dedicated to creating pieces that inspire and connect with people.</p>
+                    <h2 class="section-title">About Mail Club</h2>
+                    <p>Welcome to Mail Club—a monthly subscription service that brings original artwork directly to your mailbox. Each month, subscribers receive a carefully curated piece of art, hand-selected and sent with care.</p>
+                    <p>Our mission is to make art accessible and personal. Every piece is unique, created with passion and attention to detail. From expressive paintings to intimate sketches, each artwork tells a story and becomes part of your collection.</p>
+                    <p>Join our community of art lovers and discover something new every month. Subscribe today and start receiving beautiful, original artwork delivered to your door.</p>
                 </div>
                 <div class="about-image">
                     <img src="img/artist.jpeg" alt="Sebastian Wagner - Artist" class="artist-photo">
@@ -85,8 +132,8 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="contact-subtitle">Interested in a custom project or collaboration?</p>
+            <h2 class="section-title">Subscribe to Mail Club</h2>
+            <p class="contact-subtitle">Join our monthly subscription and receive original artwork delivered to your door</p>
             <div class="contact-content">
                 <div class="instagram-link" style="cursor: default; opacity: 0.6;">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
@@ -94,7 +141,7 @@
                     </svg>
                     <span>Follow me on Instagram</span>
                 </div>
-                <p class="contact-email">Or email me at: <a href="mailto:hello@sebastianwagner.com">hello@sebastianwagner.com</a></p>
+                <p class="contact-email">Questions? Email us at: <a href="mailto:hello@pieppiepseppl.com">hello@pieppiepseppl.com</a></p>
             </div>
         </div>
     </section>
@@ -102,7 +149,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Sebastian Wagner. All rights reserved.</p>
+            <p>&copy; 2025 PIEPPIEPSEPPL. All rights reserved.</p>
         </div>
     </footer>
 
@@ -253,29 +300,24 @@
                 letter.style.opacity = '0';
             });
             
-            // Collect all shoe images from gallery items
+            // Collect all artwork images from gallery items
             const galleryItems = document.querySelectorAll('.gallery-item');
-            const allShoeImages = [];
+            const allArtworkImages = [];
             galleryItems.forEach(item => {
-                const dataImages = item.getAttribute('data-images');
-                if (dataImages) {
-                    try {
-                        const images = JSON.parse(dataImages);
-                        images.forEach(img => allShoeImages.push(img));
-                    } catch (e) {
-                        console.error('Error parsing data-images:', e);
-                    }
+                const img = item.querySelector('.gallery-image');
+                if (img && img.src) {
+                    allArtworkImages.push(img.src);
                 }
             });
             
-            // Create sneaker reveal container
-            const sneakerReveal = document.createElement('div');
-            sneakerReveal.className = 'sneaker-reveal';
-            document.body.appendChild(sneakerReveal);
+            // Create artwork reveal container
+            const artworkReveal = document.createElement('div');
+            artworkReveal.className = 'sneaker-reveal';
+            document.body.appendChild(artworkReveal);
             
-            // Show first sneaker after explosion animation (1.2s)
+            // Show first artwork after explosion animation (1.2s)
             setTimeout(() => {
-                sneakerReveal.classList.add('active');
+                artworkReveal.classList.add('active');
                 
                 // Start cycling through all images
                 let currentIndex = 0;
@@ -293,23 +335,23 @@
                     }
                     
                     // Create new image with consistent size
-                    const sneakerImg = document.createElement('img');
-                    sneakerImg.src = allShoeImages[currentIndex];
-                    sneakerImg.alt = 'Sneakers';
-                    sneakerImg.style.opacity = '0';
+                    const artworkImg = document.createElement('img');
+                    artworkImg.src = allArtworkImages[currentIndex];
+                    artworkImg.alt = 'Artwork';
+                    artworkImg.style.opacity = '0';
                     
-                    sneakerReveal.appendChild(sneakerImg);
-                    currentImg = sneakerImg;
+                    artworkReveal.appendChild(artworkImg);
+                    currentImg = artworkImg;
                     
                     // Fade in new image
                     setTimeout(() => {
-                        if (sneakerImg.parentNode) {
-                            sneakerImg.style.opacity = '1';
+                        if (artworkImg.parentNode) {
+                            artworkImg.style.opacity = '1';
                         }
                     }, 10);
                     
                     // Move to next image
-                    currentIndex = (currentIndex + 1) % allShoeImages.length;
+                    currentIndex = (currentIndex + 1) % allArtworkImages.length;
                 }, 120); // Change image every 120ms for fast animation
                 
                 // Start scrolling to gallery section and fade out animation at the same time
@@ -327,9 +369,9 @@
                     clearInterval(cycleInterval);
                     
                     // Fade out animation
-                    sneakerReveal.classList.remove('active');
+                    artworkReveal.classList.remove('active');
                     setTimeout(() => {
-                        sneakerReveal.remove();
+                        artworkReveal.remove();
                         isAnimating = false;
                     }, 500);
                 }, 3000); // Start scroll and fade at 3 seconds
@@ -404,111 +446,48 @@
         window.addEventListener('resize', updateAboutTheme);
         updateAboutTheme(); // Initial call
 
-        // Image animation on hover
-        const galleryItems = document.querySelectorAll('.gallery-item');
+    </script>
+
+    <!-- Latest Project Video Fallback -->
+    <script>
+        const latestProjectVideo = document.querySelector('.latest-project-video');
+        const fallbackImage = document.querySelector('.latest-project-image.fallback-image');
         
-        galleryItems.forEach(item => {
-            const imagesData = item.getAttribute('data-images');
-            if (!imagesData) return;
+        if (latestProjectVideo && fallbackImage) {
+            // Ensure video is visible and fallback is hidden initially
+            latestProjectVideo.style.display = 'block';
+            fallbackImage.style.display = 'none';
             
-            const images = JSON.parse(imagesData);
-            const originalImage = item.querySelector('.gallery-image');
-            if (!originalImage || images.length < 2) return;
-            
-            // Wrap original image in container
-            const container = document.createElement('div');
-            container.className = 'gallery-image-container';
-            originalImage.parentNode.insertBefore(container, originalImage);
-            container.appendChild(originalImage);
-            
-            // Create animation layers for additional images
-            const animationLayers = [];
-            images.slice(1).forEach((imgSrc, index) => {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.className = 'gallery-image-animated';
-                img.alt = originalImage.alt;
-                container.appendChild(img);
-                animationLayers.push(img);
+            // Show fallback image if video fails to load
+            latestProjectVideo.addEventListener('error', function(e) {
+                console.log('Video error:', e);
+                this.style.display = 'none';
+                if (fallbackImage) {
+                    fallbackImage.style.display = 'block';
+                }
             });
             
-            let animationInterval = null;
-            let currentIndex = 0;
-            let isHovering = false;
-            let hoverTimeout = null;
-            
-            const startAnimation = () => {
-                if (animationInterval) {
-                    clearInterval(animationInterval);
+            // When video metadata loads successfully, ensure fallback is hidden
+            latestProjectVideo.addEventListener('loadedmetadata', function() {
+                console.log('Video metadata loaded');
+                this.style.display = 'block';
+                if (fallbackImage) {
+                    fallbackImage.style.display = 'none';
                 }
-                
-                // Preload all images
-                images.forEach(src => {
-                    const img = new Image();
-                    img.src = src;
-                });
-                
-                // Small delay to ensure hover state is stable
-                setTimeout(() => {
-                    if (!isHovering) return;
-                    
-                    // Start fast looping animation (300ms per image)
-                    animationInterval = setInterval(() => {
-                        if (!isHovering) {
-                            clearInterval(animationInterval);
-                            animationInterval = null;
-                            return;
-                        }
-                        
-                        // Hide current image
-                        if (currentIndex === 0) {
-                            originalImage.style.opacity = '0';
-                        } else {
-                            animationLayers[currentIndex - 1].classList.remove('active');
-                        }
-                        
-                        // Show next image
-                        currentIndex = (currentIndex + 1) % images.length;
-                        
-                        if (currentIndex === 0) {
-                            originalImage.style.opacity = '1';
-                        } else {
-                            animationLayers[currentIndex - 1].classList.add('active');
-                        }
-                    }, 300); // Fast animation: 300ms per image
-                }, 100);
-            };
-            
-            const stopAnimation = () => {
-                if (animationInterval) {
-                    clearInterval(animationInterval);
-                    animationInterval = null;
-                }
-                
-                // Reset to original image
-                originalImage.style.opacity = '1';
-                animationLayers.forEach(layer => {
-                    layer.classList.remove('active');
-                });
-                currentIndex = 0;
-            };
-            
-            item.addEventListener('mouseenter', () => {
-                isHovering = true;
-                
-                // Start animation immediately
-                startAnimation();
             });
             
-            item.addEventListener('mouseleave', () => {
-                isHovering = false;
-                if (hoverTimeout) {
-                    clearTimeout(hoverTimeout);
-                    hoverTimeout = null;
+            // When video can play, ensure it's visible
+            latestProjectVideo.addEventListener('canplay', function() {
+                console.log('Video can play');
+                this.style.display = 'block';
+                if (fallbackImage) {
+                    fallbackImage.style.display = 'none';
                 }
-                stopAnimation();
             });
-        });
+            
+            // Try to load the video
+            latestProjectVideo.load();
+        }
     </script>
 </body>
 </html>
