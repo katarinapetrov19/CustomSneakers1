@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mail Club - PIEPPIEPSEPPL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">PIEPPIEPSEPPL</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="projects.html">Mail Club</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mail Club Subscription Section -->
+    <section class="mail-club-page">
+        <div class="container">
+            <div class="mail-club-header">
+                <h1 class="section-title">Mail Club</h1>
+            </div>
+
+            <!-- Subscription CTA and Image -->
+            <div class="mail-club-main">
+                <!-- Left: Subscription CTA -->
+                <div class="mail-club-cta">
+                    <h2 class="mail-club-subtitle">40x50 mm artwork</h2>
+                    
+                    <div class="mail-club-price">
+                        <span class="price-amount">$15.00</span>
+                        <span class="price-period">per month</span>
+                    </div>
+
+                    <div class="mail-club-options">
+                        <label class="subscription-option">
+                            <input type="radio" name="purchase-type" value="one-time" checked>
+                            <div class="option-content">
+                                <span>One-time purchase</span>
+                                <span class="option-price">$15.00</span>
+                            </div>
+                        </label>
+                        <label class="subscription-option">
+                            <input type="radio" name="purchase-type" value="subscribe">
+                            <div class="option-content option-content-with-note">
+                                <div class="option-main">
+                                    <span>Subscribe</span>
+                                    <span class="option-price">$15.00</span>
+                                </div>
+                                <span class="subscription-note">Auto-renews, skip or cancel anytime</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity</label>
+                        <div class="quantity-controls">
+                            <button type="button" class="quantity-btn" id="decrease-qty">−</button>
+                            <input type="number" id="quantity" name="quantity" value="1" min="1" readonly>
+                            <button type="button" class="quantity-btn" id="increase-qty">+</button>
+                        </div>
+                    </div>
+
+                    <button class="subscribe-btn" id="subscribeBtn">Add to Cart</button>
+
+                    <p class="shipping-note">Shipping calculated at checkout</p>
+                </div>
+
+                <!-- Right: Subscription Image -->
+                <div class="mail-club-image">
+                    <img src="img/abo.jpg" alt="Mail Club Subscription" id="mailClubImage">
+                </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="mail-club-description">
+                <p class="description-intro">
+                    A tiny envelope of joy delivered to your mailbox every month. Mail Club is a slow, cozy little tradition, a moment to step away from screens, open something made just for you, and collect a little piece of art each month.
+                </p>
+
+                <h3 class="description-title">Every month you'll receive:</h3>
+                <ul class="description-list">
+                    <li>1 exclusive A6 art print</li>
+                    <li>1 sticker</li>
+                    <li>1 surprise extra (mini print, colouring sheet, or another flat treat!)</li>
+                    <li>A letter from me with tiny stories, doodles, and thoughts from my month</li>
+                </ul>
+
+                <p class="description-text">
+                    All designs are created especially for Mail Club — little artworks you won't find in my shop. It's perfect if you love cute stationery, monthly surprises, or just want something more heartfelt than the internet's chaos. Think of it as a mini adventure that arrives right to your mailbox.
+                </p>
+
+                <p class="description-note">
+                    Sign-ups close on the 15th at 11:59 PM EST. Orders after that date begin the following month. Mail goes out during the final week of each month :)
+                </p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mail-club-faq">
+                <h2 class="faq-title">FAQ ♡</h2>
+                
+                <div class="faq-item">
+                    <h3 class="faq-question">How does the subscription work?</h3>
+                    <p class="faq-answer">
+                        You'll be billed monthly and your envelope ships at the end of each month. You can pause, skip, or cancel anytime through your account. It's super simple.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I update my address if I move?</h3>
+                    <p class="faq-answer">
+                        After you place an order, you'll get an Order Confirmation Email. Click "Manage Your Subscription" (under "View your order") and log in using the same email you checked out with. Try to update your address before the 20th, just to be safe!
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I buy this as a gift?</h3>
+                    <p class="faq-answer">
+                        Yes! Just enter their shipping address at checkout. You can add a small gift note too.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Will the art repeat?</h3>
+                    <p class="faq-answer">
+                        Nope! Each month has a totally different theme, feeling, and design. I love experimenting, so there's always something new.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">What if my mail gets lost?</h3>
+                    <p class="faq-answer">
+                        If you don't receive it within 2–3 weeks (domestic) or 4–6 weeks (international), send me an email and I'll help sort it out ♡
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I try just one month?</h3>
+                    <p class="faq-answer">
+                        Absolutely! You can purchase a single month without subscribing long-term.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 PIEPPIEPSEPPL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Quantity controls
+        const decreaseBtn = document.getElementById('decrease-qty');
+        const increaseBtn = document.getElementById('increase-qty');
+        const quantityInput = document.getElementById('quantity');
+
+        decreaseBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            const currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+        });
+
+        // Subscription button
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        subscribeBtn.addEventListener('click', () => {
+            const purchaseType = document.querySelector('input[name="purchase-type"]:checked').value;
+            const quantity = quantityInput.value;
+            // Here you would integrate with your payment/subscription system
+            alert(`Added ${quantity} subscription(s) to cart (${purchaseType === 'subscribe' ? 'Monthly subscription' : 'One-time purchase'})`);
+        });
+
+    </script>
+</body>
+</html>
