@@ -29,101 +29,108 @@
         <div class="hero-background"></div>
         <div class="hero-graphic-text">
             <h1 class="hero-large-title" id="parallaxText">
-                <span class="line-1">pieppiep</span><br>
-                <span class="line-2">seppl</span>
+                <span class="line-1">PiePieP</span><br>
+                <span class="line-2">sePPL</span>
             </h1>
         </div>
     </section>
 
-    <!-- Latest Project Section -->
-    <section class="latest-project">
+    <!-- Mail Club Section -->
+    <section id="gallery" class="mail-club-section">
         <div class="container">
-            <div class="latest-project-header">
-                <a href="gallery.html" class="latest-project-title-link">
-                    <h2 class="section-title latest-project-title-interactive">
-                        Latest Project
-                        <span class="latest-project-arrow">→</span>
-                    </h2>
-                </a>
-            </div>
-            <div class="latest-project-content">
-                <!-- Media: Video or Image -->
-                <!-- To use VIDEO: Keep the video element below and add your video file to video/ folder -->
-                <!-- To use IMAGE: Comment out the video element and uncomment the image element -->
-                <div class="latest-project-media">
-                    <!-- Video Option -->
-                    <video class="latest-project-video" controls autoplay muted loop playsinline preload="auto">
-                        <source src="img/projekt.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <!-- Fallback image if video doesn't load -->
-                    <img src="img/sneakersRW01.jpg" alt="Latest Project" class="latest-project-image fallback-image">
-                    
-                    <!-- Image Option (uncomment to use image instead of video) -->
-                    <!--
-                    <img src="img/sneakersRW01.jpg" alt="Latest Project" class="latest-project-image">
-                    -->
-                    
-                    <!-- Next Project Overlay -->
-                    <div class="next-project-overlay">
-                        <a href="gallery.html" class="next-project-link">
-                            <span class="next-project-text">Next project</span>
-                            <span class="next-project-arrow">→</span>
-                        </a>
+            <div class="mail-club-home-layout">
+                <div class="mail-club-home-text">
+                    <span class="mail-club-home-top">MAIL CLUB</span>
+                    <span class="mail-club-home-top">SUBSCRIBE</span>
+                    <span class="mail-club-home-top">MAIL CLUB</span>
+                </div>
+                <div class="mail-club-home-card">
+                    <div class="mail-club-home-image-wrap">
+                        <img src="img/BW.jpg" alt="Mail Club mini preview" class="mail-club-home-image" id="homePlanImage">
+                        <button class="mail-club-home-cta-btn" id="homeSubscribeBtn" type="button">
+                            Subscribe — 15€ / month
+                        </button>
+                    </div>
+                    <div class="mail-club-home-controls">
+                        <label for="homePlanSelect">Choose size</label>
+                        <select id="homePlanSelect" name="plan">
+                            <option value="mini">mini — 1 artwork (150x120mm)</option>
+                            <option value="midi">midi — 2 artworks (150x120mm)</option>
+                            <option value="maxi">maxi — 3 artworks (150x120mm)</option>
+                        </select>
+                        <p class="mail-club-home-note">Auto-renews, skip or cancel anytime.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="gallery-title-wrapper">
-                <div class="gallery-title-carousel">
-                    <span class="gallery-title">Mail Club</span>
-                    <span class="gallery-title">Mail Club</span>
-                    <span class="gallery-title">Mail Club</span>
-                    <span class="gallery-title">Mail Club</span>
-                    <span class="gallery-title">Mail Club</span>
-                    <span class="gallery-title">Mail Club</span>
+    <!-- Projects Section -->
+    <section id="projects" class="infinite-gallery home-projects">
+        <div class="gallery-layout">
+            <div class="gallery-info">
+                <div class="project-info-sticky">
+                    <h2 class="current-project-title" id="homeProjectTitle">Urban Street Collection</h2>
+                    <p class="current-project-description" id="homeProjectDescription">
+                        A series of hand-painted custom sneakers inspired by urban landscapes and street art culture. 
+                        Each pair tells a unique story of the city—from weathered brick walls and graffiti tags to the 
+                        energy of bustling streets.
+                    </p>
                 </div>
             </div>
-            <div class="gallery-grid">
-                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
-                    <img src="img/BW.jpg" alt="Mini" class="gallery-image">
-                    <h3>MINI</h3>
-                    <p class="gallery-description">1 artwork (150x120mm)</p>
-                    <p class="gallery-price">8€</p>
-                </a>
-                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
-                    <img src="img/head.jpg" alt="Midi" class="gallery-image">
-                    <h3>MIDI</h3>
-                    <p class="gallery-description">2 artworks (150x120mm)</p>
-                    <p class="gallery-price">11€</p>
-                </a>
-                <a href="gallery.html" class="gallery-item" style="text-decoration: none; color: inherit;">
-                    <img src="img/Kat.jpg" alt="Maxi" class="gallery-image">
-                    <h3>MAXI</h3>
-                    <p class="gallery-description">3 artworks (150x120mm)</p>
-                    <p class="gallery-price">15€</p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About Mail Club</h2>
-                    <p>Welcome to Mail Club—a monthly subscription service that brings original artwork directly to your mailbox. Each month, subscribers receive a carefully curated piece of art, hand-selected and sent with care.</p>
-                    <p>Our mission is to make art accessible and personal. Every piece is unique, created with passion and attention to detail. From expressive paintings to intimate sketches, each artwork tells a story and becomes part of your collection.</p>
-                    <p>Join our community of art lovers and discover something new every month. Subscribe today and start receiving beautiful, original artwork delivered to your door.</p>
-                </div>
-                <div class="about-image">
-                    <img src="img/artist.jpeg" alt="Sebastian Wagner - Artist" class="artist-photo">
+            <div class="gallery-scroll-container" id="homeGalleryScroll">
+                <div class="gallery-projects-wrapper" id="homeProjectsWrapper">
+                    <div class="gallery-project" data-project="0">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW01.jpg" alt="Urban Street Collection" class="img-large img-full-width">
+                            <div class="image-row">
+                                <img src="img/sneakersRW01a.png" alt="Urban Street Collection" class="img-medium">
+                                <img src="img/sneakersRW01b.png" alt="Urban Street Collection" class="img-small">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-project" data-project="1">
+                        <div class="gallery-project-images">
+                            <div class="image-row">
+                                <img src="img/sneakersRW02.png" alt="Nature Series" class="img-small">
+                                <img src="img/sneakersRW02a.png" alt="Nature Series" class="img-large">
+                            </div>
+                            <img src="img/sneakersRW02b.png" alt="Nature Series" class="img-medium img-offset-left">
+                        </div>
+                    </div>
+                    <div class="gallery-project" data-project="2">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW04.png" alt="Abstract Expression" class="img-medium img-offset-left">
+                            <img src="img/sneakersRW04c.png" alt="Abstract Expression" class="img-large img-full-width">
+                        </div>
+                    </div>
+                    <div class="gallery-project" data-project="3">
+                        <div class="gallery-project-images">
+                            <img src="img/sneakersRW03.png" alt="Downtown Wall Mural" class="img-large img-full-width">
+                            <div class="image-row">
+                                <img src="img/sneakersRW03a.png" alt="Downtown Wall Mural" class="img-small">
+                                <img src="img/sneakersRW03b.png" alt="Downtown Wall Mural" class="img-medium">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-project home-about-project" data-project="4">
+                        <div class="home-about-card">
+                            <div class="home-about-text">
+                                <h3>About the artist</h3>
+                                <p>
+                                    Welcome to my little art world. I paint stories on paper and on shoes, mixing
+                                    sketches, color, and small daily observations into pieces you can hold or wear.
+                                </p>
+                                <p>
+                                    Each project is made slowly, by hand, with a focus on emotion and detail.
+                                    If you love personal, imperfect, and heartfelt art, you are in the right place.
+                                </p>
+                            </div>
+                            <div class="home-about-image">
+                                <img src="img/artist.jpeg" alt="Artist portrait">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,6 +165,80 @@
         const heroTitle = document.getElementById('parallaxText');
         const hero = document.querySelector('.hero');
         
+        // Spray can cursor trail
+        const sprayCanvas = document.createElement('canvas');
+        sprayCanvas.className = 'spray-canvas';
+        document.body.appendChild(sprayCanvas);
+        const sprayCtx = sprayCanvas.getContext('2d');
+
+        const resizeSprayCanvas = () => {
+            const dpr = window.devicePixelRatio || 1;
+            sprayCanvas.width = window.innerWidth * dpr;
+            sprayCanvas.height = window.innerHeight * dpr;
+            sprayCanvas.style.width = `${window.innerWidth}px`;
+            sprayCanvas.style.height = `${window.innerHeight}px`;
+            sprayCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+        resizeSprayCanvas();
+        window.addEventListener('resize', resizeSprayCanvas);
+
+        let lastSprayTime = 0;
+        let lastSprayPoint = { x: null, y: null };
+        let lastSprayMidpoint = null;
+        let sprayFadeFrame = null;
+
+        const sprayLineWidth = 14;
+        const sprayColor = 'rgba(255, 105, 180, 0.75)';
+
+        sprayCtx.lineCap = 'round';
+        sprayCtx.lineJoin = 'round';
+        sprayCtx.shadowColor = 'rgba(255, 105, 180, 0.5)';
+        sprayCtx.shadowBlur = 14;
+
+        const fadeSpray = () => {
+            sprayCtx.save();
+            sprayCtx.globalCompositeOperation = 'destination-out';
+            sprayCtx.fillStyle = 'rgba(0, 0, 0, 0.035)';
+            sprayCtx.fillRect(0, 0, sprayCanvas.width, sprayCanvas.height);
+            sprayCtx.restore();
+            sprayFadeFrame = requestAnimationFrame(fadeSpray);
+        };
+
+        window.addEventListener('mousemove', (event) => {
+            const now = performance.now();
+            if (now - lastSprayTime < 4) return;
+            lastSprayTime = now;
+
+            const { clientX, clientY } = event;
+            if (lastSprayPoint.x === null) {
+                lastSprayPoint = { x: clientX, y: clientY };
+                lastSprayMidpoint = { x: clientX, y: clientY };
+                return;
+            }
+
+            const midX = (lastSprayPoint.x + clientX) / 2;
+            const midY = (lastSprayPoint.y + clientY) / 2;
+
+            sprayCtx.beginPath();
+            sprayCtx.moveTo(lastSprayMidpoint.x, lastSprayMidpoint.y);
+            sprayCtx.quadraticCurveTo(lastSprayPoint.x, lastSprayPoint.y, midX, midY);
+            sprayCtx.strokeStyle = sprayColor;
+            sprayCtx.lineWidth = sprayLineWidth;
+            sprayCtx.stroke();
+
+            lastSprayPoint = { x: clientX, y: clientY };
+            lastSprayMidpoint = { x: midX, y: midY };
+        });
+
+        window.addEventListener('mouseleave', () => {
+            lastSprayPoint = { x: null, y: null };
+            lastSprayMidpoint = null;
+        });
+
+        if (!sprayFadeFrame) {
+            sprayFadeFrame = requestAnimationFrame(fadeSpray);
+        }
+
         // Split text into individual letter spans
         function wrapLetters() {
             const lines = heroTitle.querySelectorAll('.line-1, .line-2');
@@ -254,6 +335,41 @@
 
         // Click explosion animation
         let isAnimating = false;
+        const planPrices = {
+            mini: '8€',
+            midi: '11€',
+            maxi: '15€'
+        };
+        const planImages = {
+            mini: {
+                src: 'img/BW.jpg',
+                alt: 'Mail Club mini preview'
+            },
+            midi: {
+                src: 'img/head.jpg',
+                alt: 'Mail Club midi preview'
+            },
+            maxi: {
+                src: 'img/Kat.jpg',
+                alt: 'Mail Club maxi preview'
+            }
+        };
+
+        const getMailClubImages = () => {
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const images = [];
+            galleryItems.forEach(item => {
+                const img = item.querySelector('.gallery-image');
+                if (img && img.src) {
+                    images.push(img.src);
+                }
+            });
+            if (images.length > 0) {
+                return images;
+            }
+            return Object.values(planImages).map((image) => image.src);
+        };
+
         heroTitle.addEventListener('click', (e) => {
             if (isAnimating) return;
             isAnimating = true;
@@ -300,15 +416,8 @@
                 letter.style.opacity = '0';
             });
             
-            // Collect all artwork images from gallery items
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const allArtworkImages = [];
-            galleryItems.forEach(item => {
-                const img = item.querySelector('.gallery-image');
-                if (img && img.src) {
-                    allArtworkImages.push(img.src);
-                }
-            });
+            // Collect all artwork images (gallery or mail club cards)
+            const allArtworkImages = getMailClubImages();
             
             // Create artwork reveal container
             const artworkReveal = document.createElement('div');
@@ -378,117 +487,91 @@
             }, 1200);
         });
 
-        // Dark theme transition for About section
-        const aboutSection = document.querySelector('.about');
-        const aboutText = document.querySelector('.about-text');
-        const aboutTitle = aboutText ? aboutText.querySelector('.section-title') : null;
-        const aboutParagraphs = aboutText ? aboutText.querySelectorAll('p') : null;
+        const homePlanSelect = document.getElementById('homePlanSelect');
+        const homeSubscribeBtn = document.getElementById('homeSubscribeBtn');
+        const homePlanImage = document.getElementById('homePlanImage');
+        if (homePlanSelect && homeSubscribeBtn) {
+            const updateHomeCtaPrice = () => {
+                const selectedPlan = homePlanSelect.value || 'mini';
+                const price = planPrices[selectedPlan] || planPrices.mini;
+                homeSubscribeBtn.textContent = `Subscribe — ${price} / month`;
+            };
+            const updateHomeCtaImage = () => {
+                if (!homePlanImage) return;
+                const selectedPlan = homePlanSelect.value || 'mini';
+                const image = planImages[selectedPlan] || planImages.mini;
+                homePlanImage.src = image.src;
+                homePlanImage.alt = image.alt;
+            };
 
-        function updateAboutTheme() {
-            if (!aboutSection) return;
+            updateHomeCtaPrice();
+            updateHomeCtaImage();
 
-            const rect = aboutSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Calculate when section starts entering viewport
-            const sectionTop = rect.top;
-            const sectionHeight = rect.height;
-            
-            // Start transition when section is 70% visible (earlier trigger)
-            const triggerPoint = windowHeight * 0.7;
-            const endPoint = -sectionHeight * 0.1; // End transition when section is 10% scrolled past (faster completion)
-            
-            // Calculate progress (0 to 1) with faster transition
-            let progress = 0;
-            if (sectionTop < triggerPoint && sectionTop > endPoint) {
-                // Apply easing for faster transition (cubic ease-in)
-                const rawProgress = 1 - (sectionTop - endPoint) / (triggerPoint - endPoint);
-                progress = rawProgress * rawProgress * rawProgress; // Cubic easing for faster transition
-            } else if (sectionTop <= endPoint) {
-                progress = 1;
+            homePlanSelect.addEventListener('change', () => {
+                updateHomeCtaPrice();
+                updateHomeCtaImage();
+            });
+            homeSubscribeBtn.addEventListener('click', () => {
+                const selectedPlan = homePlanSelect.value || 'mini';
+                window.location.href = `projects.html?plan=${encodeURIComponent(selectedPlan)}`;
+            });
+        }
+
+        // Home projects scroll (gallery-style)
+        const homeProjects = [
+            {
+                title: "Urban Street Collection",
+                description: "A series of hand-painted custom sneakers inspired by urban landscapes and street art culture. Each pair tells a unique story of the city—from weathered brick walls and graffiti tags to the energy of bustling streets."
+            },
+            {
+                title: "Nature Series",
+                description: "Botanical artwork on canvas shoes featuring vibrant tie-dye patterns and mystical symbols. These pieces celebrate the connection between nature and spirituality."
+            },
+            {
+                title: "Abstract Expression",
+                description: "Bold colors and geometric patterns merge in this futuristic tech-inspired collection. Circuit board aesthetics meet street style with intricate hand-painted details."
+            },
+            {
+                title: "Downtown Wall Mural",
+                description: "Large-scale street art installation meets custom footwear. Inspired by classic motifs and urban textures, this collection bridges mural art and wearable design."
+            },
+            {
+                title: "About the artist",
+                description: "Personal, hand-crafted work that blends sketches, color, and small daily observations into pieces you can hold or wear."
             }
-            
-            // Clamp progress between 0 and 1
-            progress = Math.max(0, Math.min(1, progress));
-            
-            // Interpolate colors
-            // Background: white (#ffffff) to dark (#1a1a1a)
-            const bgR = Math.round(255 - (255 - 26) * progress);
-            const bgG = Math.round(255 - (255 - 26) * progress);
-            const bgB = Math.round(255 - (255 - 26) * progress);
-            aboutSection.style.backgroundColor = `rgb(${bgR}, ${bgG}, ${bgB})`;
-            
-            // Text: dark (#555) to light (#e8e8e8)
-            const textR = Math.round(85 + (232 - 85) * progress);
-            const textG = Math.round(85 + (232 - 85) * progress);
-            const textB = Math.round(85 + (232 - 85) * progress);
-            const textColor = `rgb(${textR}, ${textG}, ${textB})`;
-            
-            // Title: dark (#2a2a2a) to light (#e8e8e8)
-            const titleR = Math.round(42 + (232 - 42) * progress);
-            const titleG = Math.round(42 + (232 - 42) * progress);
-            const titleB = Math.round(42 + (232 - 42) * progress);
-            const titleColor = `rgb(${titleR}, ${titleG}, ${titleB})`;
-            
-            if (aboutParagraphs) {
-                aboutParagraphs.forEach(p => {
-                    p.style.color = textColor;
+        ];
+
+        const homeGalleryScroll = document.getElementById('homeGalleryScroll');
+        const homeProjectTitle = document.getElementById('homeProjectTitle');
+        const homeProjectDescription = document.getElementById('homeProjectDescription');
+
+        if (homeGalleryScroll && homeProjectTitle && homeProjectDescription) {
+            const homeObserverOptions = {
+                root: homeGalleryScroll,
+                rootMargin: '-30% 0px -30% 0px',
+                threshold: 0
+            };
+
+            const homeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const projectIndex = parseInt(entry.target.dataset.project, 10);
+                        if (!Number.isNaN(projectIndex) && homeProjects[projectIndex]) {
+                            homeProjectTitle.textContent = homeProjects[projectIndex].title;
+                            homeProjectDescription.textContent = homeProjects[projectIndex].description;
+                        }
+                    }
                 });
-            }
-            
-            if (aboutTitle) {
-                aboutTitle.style.color = titleColor;
-            }
-        }
+            }, homeObserverOptions);
 
-        // Update on scroll
-        window.addEventListener('scroll', updateAboutTheme);
-        window.addEventListener('resize', updateAboutTheme);
-        updateAboutTheme(); // Initial call
+            document.querySelectorAll('#homeProjectsWrapper .gallery-project').forEach(project => {
+                homeObserver.observe(project);
+            });
+        }
 
     </script>
 
-    <!-- Latest Project Video Fallback -->
-    <script>
-        const latestProjectVideo = document.querySelector('.latest-project-video');
-        const fallbackImage = document.querySelector('.latest-project-image.fallback-image');
-        
-        if (latestProjectVideo && fallbackImage) {
-            // Ensure video is visible and fallback is hidden initially
-            latestProjectVideo.style.display = 'block';
-            fallbackImage.style.display = 'none';
-            
-            // Show fallback image if video fails to load
-            latestProjectVideo.addEventListener('error', function(e) {
-                console.log('Video error:', e);
-                this.style.display = 'none';
-                if (fallbackImage) {
-                    fallbackImage.style.display = 'block';
-                }
-            });
-            
-            // When video metadata loads successfully, ensure fallback is hidden
-            latestProjectVideo.addEventListener('loadedmetadata', function() {
-                console.log('Video metadata loaded');
-                this.style.display = 'block';
-                if (fallbackImage) {
-                    fallbackImage.style.display = 'none';
-                }
-            });
-            
-            // When video can play, ensure it's visible
-            latestProjectVideo.addEventListener('canplay', function() {
-                console.log('Video can play');
-                this.style.display = 'block';
-                if (fallbackImage) {
-                    fallbackImage.style.display = 'none';
-                }
-            });
-            
-            // Try to load the video
-            latestProjectVideo.load();
-        }
-    </script>
+    
 </body>
 </html>
 
