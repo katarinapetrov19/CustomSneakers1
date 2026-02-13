@@ -42,6 +42,15 @@
                         <span class="price-period">per month</span>
                     </div>
 
+                    <div class="plan-selector">
+                        <label for="planSelect">Choose size</label>
+                        <select id="planSelect" name="plan">
+                            <option value="mini">mini — 1 artwork (150x120mm)</option>
+                            <option value="midi">midi — 2 artworks (150x120mm)</option>
+                            <option value="maxi">maxi — 3 artworks (150x120mm)</option>
+                        </select>
+                    </div>
+
                     <div class="mail-club-options">
                         <label class="subscription-option">
                             <input type="radio" name="purchase-type" value="one-time" checked>
@@ -71,7 +80,7 @@
                         </div>
                     </div>
 
-                    <button class="subscribe-btn" id="subscribeBtn">Add to Cart</button>
+                    <button class="subscribe-btn" id="subscribeBtn">Subscribe — 15€ / month</button>
 
                     <p class="shipping-note">Shipping calculated at checkout</p>
                 </div>
@@ -179,14 +188,46 @@
             quantityInput.value = currentValue + 1;
         });
 
+        const planPrices = {
+            mini: '8€',
+            midi: '11€',
+            maxi: '15€'
+        };
+
         // Subscription button
         const subscribeBtn = document.getElementById('subscribeBtn');
-        subscribeBtn.addEventListener('click', () => {
-            const purchaseType = document.querySelector('input[name="purchase-type"]:checked').value;
-            const quantity = quantityInput.value;
-            // Here you would integrate with your payment/subscription system
-            alert(`Added ${quantity} subscription(s) to cart (${purchaseType === 'subscribe' ? 'Monthly subscription' : 'One-time purchase'})`);
-        });
+        const planSelect = document.getElementById('planSelect');
+        const updateSubscribePrice = () => {
+            const selectedPlan = planSelect ? planSelect.value : 'mini';
+            const price = planPrices[selectedPlan] || planPrices.mini;
+            subscribeBtn.textContent = `Subscribe — ${price} / month`;
+        };
+        if (subscribeBtn) {
+            updateSubscribePrice();
+        }
+        if (subscribeBtn) {
+            subscribeBtn.addEventListener('click', () => {
+                const purchaseType = document.querySelector('input[name="purchase-type"]:checked').value;
+                const quantity = quantityInput.value;
+                const selectedPlan = planSelect ? planSelect.value : 'mini';
+                // Here you would integrate with your payment/subscription system
+                alert(`Added ${quantity} ${selectedPlan} subscription(s) to cart (${purchaseType === 'subscribe' ? 'Monthly subscription' : 'One-time purchase'})`);
+            });
+        }
+
+        // Preselect plan from URL (e.g. ?plan=mini)
+        const urlParams = new URLSearchParams(window.location.search);
+        const planParam = urlParams.get('plan');
+        if (planSelect && planParam) {
+            const normalized = planParam.toLowerCase();
+            if (['mini', 'midi', 'maxi'].includes(normalized)) {
+                planSelect.value = normalized;
+            }
+        }
+        if (planSelect && subscribeBtn) {
+            updateSubscribePrice();
+            planSelect.addEventListener('change', updateSubscribePrice);
+        }
 
     </script>
 </body>
