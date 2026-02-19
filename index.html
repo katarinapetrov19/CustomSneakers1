@@ -315,6 +315,7 @@
             section.addEventListener('wheel', function(e) {
                 if (!sectionInView) return;
                 e.preventDefault();
+                if (isTransitioning) return;
 
                 if (e.deltaY > 0 && currentIndex === 0) {
                     if (!didEmptyScrollOnFirst) {
@@ -341,8 +342,6 @@
                     if (heroEl) heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     return;
                 }
-
-                if (isTransitioning) return;
                 if (e.deltaY > 0) {
                     currentIndex = Math.min(projects.length - 1, currentIndex + 1);
                 } else {
