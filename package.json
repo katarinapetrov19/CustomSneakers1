@@ -1,0 +1,12 @@
+{
+  "name": "pieppiepseppl-tests",
+  "version": "1.0.0",
+  "description": "Regression tests for PIEPPIEPSEPPL website",
+  "scripts": {
+    "test": "playwright test",
+    "test:report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.41.0"
+  }
+}
