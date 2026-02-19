@@ -200,7 +200,10 @@ section {
     text-align: left;
     overflow: visible;
     margin: 0;
-    padding: 0 0 0 2vw;
+    padding: 12vh 0 0 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-large-title {
@@ -316,7 +319,7 @@ button.line-2 {
     display: block;
     font-size: clamp(240px, 30vw, 600px);
     font-weight: 800;
-    margin-top: 0.02em;
+    margin-top: 0.12em;
     position: relative;
     z-index: 2;
     white-space: nowrap;
