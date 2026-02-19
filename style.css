@@ -200,7 +200,7 @@ section {
     text-align: left;
     overflow: visible;
     margin: 0;
-    padding: 12vh 0 0 2vw;
+    padding: 0 0 0 2vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
