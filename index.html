@@ -6,19 +6,22 @@
     <title>PIEPPIEPSEPPL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="/font/Playpen_Sans/static/PlaypenSans-Bold.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">PIEPPIEPSEPPL</div>
+            <a href="#home" class="logo">
+                <img src="img/logo.svg" alt="PIEPPIEPSEPPL" class="logo-img">
+            </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="projects.html">Mail Club</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -29,109 +32,83 @@
         <div class="hero-background"></div>
         <div class="hero-graphic-text">
             <h1 class="hero-large-title" id="parallaxText">
-                <span class="line-1">PiePieP</span><br>
-                <span class="line-2">sePPL</span>
+                <span class="line-1">I AM NO</span>
+                <span class="line-2">ARTIST</span>
             </h1>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="home-projects projects-split-section infinite-gallery">
+        <div class="projects-split-layout">
+            <div class="projects-half projects-half--image" aria-hidden="true">
+                <div class="projects-half-bg projects-half-bg--a" id="projectsBgA"></div>
+                <div class="projects-half-bg projects-half-bg--b" id="projectsBgB"></div>
+            </div>
+            <div class="projects-half projects-half--dark">
+                <div class="projects-content" id="projectsContent">
+                    <h2 class="projects-title" id="projectsTitle">FABRIK</h2>
+                    <p class="projects-description" id="projectsDescription"></p>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="projects-instagram-link" id="projectsInstagram" aria-label="Instagram">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
+            <div class="projects-hero-media" id="projectsHeroMedia">
+                <video class="projects-hero-video" id="projectsVideo" autoplay muted loop playsinline preload="auto" data-project-video></video>
+                <img src="img/fabrik.png" alt="FABRIK" class="projects-hero-fallback" id="projectsFallback" loading="eager">
+            </div>
         </div>
     </section>
 
     <!-- Mail Club Section -->
     <section id="gallery" class="mail-club-section">
-        <div class="container">
-            <div class="mail-club-home-layout">
-                <div class="mail-club-home-text">
-                    <span class="mail-club-home-top">MAIL CLUB</span>
-                    <span class="mail-club-home-top">SUBSCRIBE</span>
-                    <span class="mail-club-home-top">MAIL CLUB</span>
+        <div class="mail-club-marquee-bg" aria-hidden="true">
+            <div class="mail-club-marquee-row">
+                <div class="mail-club-marquee-track">
+                    <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
+                    <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
                 </div>
-                <div class="mail-club-home-card">
-                    <div class="mail-club-home-image-wrap">
-                        <img src="img/BW.jpg" alt="Mail Club mini preview" class="mail-club-home-image" id="homePlanImage">
-                        <button class="mail-club-home-cta-btn" id="homeSubscribeBtn" type="button">
-                            Subscribe — 15€ / month
-                        </button>
-                    </div>
-                    <div class="mail-club-home-controls">
-                        <label for="homePlanSelect">Choose size</label>
-                        <select id="homePlanSelect" name="plan">
-                            <option value="mini">mini — 1 artwork (150x120mm)</option>
-                            <option value="midi">midi — 2 artworks (150x120mm)</option>
-                            <option value="maxi">maxi — 3 artworks (150x120mm)</option>
-                        </select>
-                        <p class="mail-club-home-note">Auto-renews, skip or cancel anytime.</p>
-                    </div>
+            </div>
+            <div class="mail-club-marquee-row mail-club-marquee-row--reverse">
+                <div class="mail-club-marquee-track">
+                    <span class="mail-club-marquee-copy">SUBSCRIBE &nbsp; MAIL CLUB &nbsp; SUBSCRIBE &nbsp;</span>
+                    <span class="mail-club-marquee-copy">SUBSCRIBE &nbsp; MAIL CLUB &nbsp; SUBSCRIBE &nbsp;</span>
+                </div>
+            </div>
+            <div class="mail-club-marquee-row">
+                <div class="mail-club-marquee-track">
+                    <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
+                    <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
+                </div>
+            </div>
+            <div class="mail-club-marquee-row mail-club-marquee-row--reverse">
+                <div class="mail-club-marquee-track">
+                    <span class="mail-club-marquee-copy">SUBSCRIBE &nbsp; MAIL CLUB &nbsp; SUBSCRIBE &nbsp;</span>
+                    <span class="mail-club-marquee-copy">SUBSCRIBE &nbsp; MAIL CLUB &nbsp; SUBSCRIBE &nbsp;</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="infinite-gallery home-projects">
-        <div class="gallery-layout">
-            <div class="gallery-info">
-                <div class="project-info-sticky">
-                    <h2 class="current-project-title" id="homeProjectTitle">Urban Street Collection</h2>
-                    <p class="current-project-description" id="homeProjectDescription">
-                        A series of hand-painted custom sneakers inspired by urban landscapes and street art culture. 
-                        Each pair tells a unique story of the city—from weathered brick walls and graffiti tags to the 
-                        energy of bustling streets.
-                    </p>
+        <div class="mail-club-section-overlay">
+            <div class="mail-club-home-card">
+                <div class="mail-club-home-image-wrap">
+                    <img src="img/rosa.png" alt="Mail Club mini preview" class="mail-club-home-image" id="homePlanImage">
+                    <button class="mail-club-home-cta-btn" id="homeSubscribeBtn" type="button">
+                        Subscribe — 15€ / month
+                    </button>
                 </div>
             </div>
-            <div class="gallery-scroll-container" id="homeGalleryScroll">
-                <div class="gallery-projects-wrapper" id="homeProjectsWrapper">
-                    <div class="gallery-project" data-project="0">
-                        <div class="gallery-project-images">
-                            <img src="img/sneakersRW01.jpg" alt="Urban Street Collection" class="img-large img-full-width">
-                            <div class="image-row">
-                                <img src="img/sneakersRW01a.png" alt="Urban Street Collection" class="img-medium">
-                                <img src="img/sneakersRW01b.png" alt="Urban Street Collection" class="img-small">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-project" data-project="1">
-                        <div class="gallery-project-images">
-                            <div class="image-row">
-                                <img src="img/sneakersRW02.png" alt="Nature Series" class="img-small">
-                                <img src="img/sneakersRW02a.png" alt="Nature Series" class="img-large">
-                            </div>
-                            <img src="img/sneakersRW02b.png" alt="Nature Series" class="img-medium img-offset-left">
-                        </div>
-                    </div>
-                    <div class="gallery-project" data-project="2">
-                        <div class="gallery-project-images">
-                            <img src="img/sneakersRW04.png" alt="Abstract Expression" class="img-medium img-offset-left">
-                            <img src="img/sneakersRW04c.png" alt="Abstract Expression" class="img-large img-full-width">
-                        </div>
-                    </div>
-                    <div class="gallery-project" data-project="3">
-                        <div class="gallery-project-images">
-                            <img src="img/sneakersRW03.png" alt="Downtown Wall Mural" class="img-large img-full-width">
-                            <div class="image-row">
-                                <img src="img/sneakersRW03a.png" alt="Downtown Wall Mural" class="img-small">
-                                <img src="img/sneakersRW03b.png" alt="Downtown Wall Mural" class="img-medium">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="gallery-project home-about-project" data-project="4">
-                        <div class="home-about-card">
-                            <div class="home-about-text">
-                                <h3>About the artist</h3>
-                                <p>
-                                    Welcome to my little art world. I paint stories on paper and on shoes, mixing
-                                    sketches, color, and small daily observations into pieces you can hold or wear.
-                                </p>
-                                <p>
-                                    Each project is made slowly, by hand, with a focus on emotion and detail.
-                                    If you love personal, imperfect, and heartfelt art, you are in the right place.
-                                </p>
-                            </div>
-                            <div class="home-about-image">
-                                <img src="img/artist.jpeg" alt="Artist portrait">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <!-- Third row layer: runs over the image (same content as row 3) -->
+        <div class="mail-club-row-3-overlay" aria-hidden="true">
+            <div class="mail-club-marquee-track">
+                <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
+                <span class="mail-club-marquee-copy">MAIL CLUB &nbsp; SUBSCRIBE &nbsp; MAIL CLUB &nbsp;</span>
             </div>
         </div>
     </section>
@@ -162,6 +139,222 @@
 
     <!-- Mouse Parallax Script -->
     <script>
+        // Projects section: single view, scroll triggers next/prev project (new bg, video, text)
+        (function() {
+            const section = document.getElementById('projects');
+            const bgElA = document.getElementById('projectsBgA');
+            const bgElB = document.getElementById('projectsBgB');
+            const contentEl = document.getElementById('projectsContent');
+            const titleEl = document.getElementById('projectsTitle');
+            const descEl = document.getElementById('projectsDescription');
+            const instaEl = document.getElementById('projectsInstagram');
+            const mediaWrap = document.getElementById('projectsHeroMedia');
+            const videoEl = document.getElementById('projectsVideo');
+            const fallbackEl = document.getElementById('projectsFallback');
+            if (!section || !bgElA || !bgElB || !contentEl || !videoEl) return;
+
+            const projects = [
+                {
+                    bgImage: 'img/fabrik.png',
+                    videoMp4: 'img/fabrik.mp4',
+                    videoMov: 'img/Fabrik.MOV',
+                    poster: 'img/fabrik.png',
+                    title: 'FABRIK',
+                    description: 'Our project aims to revolutionize the way we connect with technology, making it more intuitive and user-friendly. We believe in creating solutions that enhance everyday experiences.',
+                    instaHref: 'https://www.instagram.com/'
+                },
+                {
+                    bgImage: 'img/game.jpg',
+                    videoMp4: 'img/game.mp4',
+                    videoMov: '',
+                    poster: 'img/game.jpg',
+                    title: 'Urban Street',
+                    description: 'A series of hand-painted custom sneakers inspired by urban landscapes and street art. Each pair tells a unique story of the city—from weathered walls and graffiti to the energy of bustling streets.',
+                    instaHref: 'https://www.instagram.com/'
+                },
+                {
+                    bgImage: 'img/sneakersRW02.png',
+                    videoMp4: '',
+                    videoMov: '',
+                    poster: 'img/sneakersRW02a.png',
+                    title: 'Nature Series',
+                    description: 'Custom sneakers and wearables inspired by natural forms, organic textures, and the outdoors. Designed to bring a piece of the wild into everyday style.',
+                    instaHref: 'https://www.instagram.com/'
+                }
+            ];
+
+            let currentIndex = 0;
+            let sectionInView = false;
+            let bgVisible = 'a';
+            let isTransitioning = false;
+            var emptyScrollsNeededBeforeContact = 1;
+            var emptyScrollCount = 0;
+            var didEmptyScrollOnFirst = false;
+            var CONTENT_OUT_MS = 420;
+            var LOCK_MS = 1100;
+
+            function applyProject(index) {
+                var p = projects[index];
+                var isFirstLoad = !bgElA.classList.contains('is-visible') && !bgElB.classList.contains('is-visible');
+
+                if (isFirstLoad) {
+                    bgElA.style.backgroundImage = 'url(' + p.bgImage + ')';
+                    bgElA.classList.add('is-visible');
+                    bgVisible = 'a';
+                    titleEl.textContent = p.title;
+                    descEl.textContent = p.description;
+                    instaEl.href = p.instaHref;
+                    fallbackEl.src = p.poster;
+                    fallbackEl.alt = '';
+                    videoEl.pause();
+                    videoEl.removeAttribute('src');
+                    videoEl.load();
+                    var sources = videoEl.querySelectorAll('source');
+                    sources.forEach(function(s) { s.remove(); });
+                    if (p.videoMp4) {
+                        var s1 = document.createElement('source');
+                        s1.src = p.videoMp4;
+                        s1.type = 'video/mp4';
+                        videoEl.appendChild(s1);
+                    }
+                    if (p.videoMov) {
+                        var s2 = document.createElement('source');
+                        s2.src = p.videoMov;
+                        s2.type = 'video/quicktime';
+                        videoEl.appendChild(s2);
+                    }
+                    videoEl.poster = p.poster || '';
+                    if (p.videoMp4 || p.videoMov) {
+                        mediaWrap.classList.add('projects-hero-media--has-video');
+                        videoEl.load();
+                        videoEl.play().catch(function() {});
+                    } else {
+                        mediaWrap.classList.remove('projects-hero-media--has-video');
+                    }
+                    contentEl.classList.add('is-in-view');
+                    return;
+                }
+
+                isTransitioning = true;
+                contentEl.classList.remove('is-in-view');
+                mediaWrap.classList.add('is-fading-out');
+
+                var nextBg = bgVisible === 'a' ? bgElB : bgElA;
+                nextBg.style.backgroundImage = 'url(' + p.bgImage + ')';
+                nextBg.classList.add('is-visible');
+                if (bgVisible === 'a') {
+                    bgElA.classList.remove('is-visible');
+                    bgVisible = 'b';
+                } else {
+                    bgElB.classList.remove('is-visible');
+                    bgVisible = 'a';
+                }
+
+                setTimeout(function() {
+                    titleEl.textContent = p.title;
+                    descEl.textContent = p.description;
+                    instaEl.href = p.instaHref;
+                    fallbackEl.src = p.poster;
+                    fallbackEl.alt = '';
+
+                    videoEl.pause();
+                    videoEl.removeAttribute('src');
+                    videoEl.load();
+                    var sources = videoEl.querySelectorAll('source');
+                    sources.forEach(function(s) { s.remove(); });
+                    if (p.videoMp4) {
+                        var s1 = document.createElement('source');
+                        s1.src = p.videoMp4;
+                        s1.type = 'video/mp4';
+                        videoEl.appendChild(s1);
+                    }
+                    if (p.videoMov) {
+                        var s2 = document.createElement('source');
+                        s2.src = p.videoMov;
+                        s2.type = 'video/quicktime';
+                        videoEl.appendChild(s2);
+                    }
+                    videoEl.poster = p.poster || '';
+                    if (p.videoMp4 || p.videoMov) {
+                        mediaWrap.classList.add('projects-hero-media--has-video');
+                        videoEl.load();
+                        videoEl.play().catch(function() {});
+                    } else {
+                        mediaWrap.classList.remove('projects-hero-media--has-video');
+                    }
+
+                    mediaWrap.classList.remove('is-fading-out');
+                    requestAnimationFrame(function() {
+                        requestAnimationFrame(function() {
+                            contentEl.classList.add('is-in-view');
+                        });
+                    });
+
+                    setTimeout(function() {
+                        isTransitioning = false;
+                    }, LOCK_MS - CONTENT_OUT_MS);
+                }, CONTENT_OUT_MS);
+            }
+
+            // Projects section: when in view, sync and apply current project
+            var projectsInViewObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    sectionInView = entry.isIntersecting;
+                    if (entry.isIntersecting) {
+                        section.classList.add('is-in-view');
+                        currentIndex = Math.min(projects.length - 1, Math.max(0, currentIndex));
+                        applyProject(currentIndex);
+                    } else {
+                        section.classList.remove('is-in-view');
+                    }
+                });
+            }, { root: null, threshold: 0.5 });
+            projectsInViewObserver.observe(section);
+
+            // Projects wheel: cycle projects, or scroll to Contact / Mail Club
+            section.addEventListener('wheel', function(e) {
+                if (!sectionInView) return;
+                e.preventDefault();
+
+                if (e.deltaY > 0 && currentIndex === 0) {
+                    if (!didEmptyScrollOnFirst) {
+                        didEmptyScrollOnFirst = true;
+                        return;
+                    }
+                }
+                if (e.deltaY < 0 && currentIndex === 1) didEmptyScrollOnFirst = false;
+
+                if (e.deltaY > 0 && currentIndex === projects.length - 1) {
+                    if (emptyScrollCount < emptyScrollsNeededBeforeContact) {
+                        emptyScrollCount++;
+                        return;
+                    }
+                    emptyScrollCount = 0;
+                    var contactEl = document.getElementById('contact');
+                    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    return;
+                }
+                if (e.deltaY < 0 && currentIndex === projects.length - 1) emptyScrollCount = 0;
+
+                if (e.deltaY < 0 && currentIndex === 0) {
+                    var heroEl = document.getElementById('home');
+                    if (heroEl) heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    return;
+                }
+
+                if (isTransitioning) return;
+                if (e.deltaY > 0) {
+                    currentIndex = Math.min(projects.length - 1, currentIndex + 1);
+                } else {
+                    currentIndex = Math.max(0, currentIndex - 1);
+                }
+                applyProject(currentIndex);
+            }, { passive: false });
+
+            applyProject(0);
+            contentEl.classList.add('is-in-view');
+        })();
+
         const heroTitle = document.getElementById('parallaxText');
         const hero = document.querySelector('.hero');
         
@@ -534,10 +727,6 @@
             {
                 title: "Downtown Wall Mural",
                 description: "Large-scale street art installation meets custom footwear. Inspired by classic motifs and urban textures, this collection bridges mural art and wearable design."
-            },
-            {
-                title: "About the artist",
-                description: "Personal, hand-crafted work that blends sketches, color, and small daily observations into pieces you can hold or wear."
             }
         ];
 
