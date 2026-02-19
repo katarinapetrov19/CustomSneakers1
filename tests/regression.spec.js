@@ -24,9 +24,9 @@ test.describe('index.html', () => {
     await expect(page.locator('img.logo-img')).toBeVisible();
   });
 
-  test('hero section shows "I\'M NO ARTIST"', async ({ page }) => {
+  test('hero section shows "I AM NO ARTIST"', async ({ page }) => {
     const title = page.locator('.hero-large-title');
-    await expect(title).toContainText("I'M NO");
+    await expect(title).toContainText('I AM NO');
     await expect(title).toContainText('ARTIST');
   });
 

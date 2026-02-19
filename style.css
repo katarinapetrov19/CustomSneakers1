@@ -198,9 +198,9 @@ section {
     width: 100%;
     pointer-events: none;
     text-align: left;
-    overflow: hidden;
+    overflow: visible;
     margin: 0;
-    padding: 0 2vw;
+    padding: 0 0 0 2vw;
 }
 
 .hero-large-title {
@@ -283,7 +283,7 @@ section {
 
 .hero-large-title .line-1 {
     display: block;
-    font-size: clamp(270px, 25vh, 400px);
+    font-size: clamp(180px, 25vw, 520px);
     font-weight: 800;
     white-space: nowrap;
     margin-top: 0;
@@ -314,9 +314,9 @@ section {
 .hero-large-title .line-2,
 button.line-2 {
     display: block;
-    font-size: clamp(320px, 40vw, 704px);
+    font-size: clamp(240px, 33vw, 700px);
     font-weight: 800;
-    margin-top: 0.05em;
+    margin-top: 0.02em;
     position: relative;
     z-index: 2;
     white-space: nowrap;
