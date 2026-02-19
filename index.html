@@ -325,8 +325,8 @@
                         return;
                     }
                     emptyScrollCount = 0;
-                    var contactEl = document.getElementById('contact');
-                    if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    var mailClubEl = document.getElementById('gallery');
+                    if (mailClubEl) mailClubEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     return;
                 }
                 if (e.deltaY < 0 && currentIndex === projects.length - 1) emptyScrollCount = 0;
