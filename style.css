@@ -314,12 +314,13 @@ section {
 .hero-large-title .line-2,
 button.line-2 {
     display: block;
-    font-size: clamp(240px, 33vw, 700px);
+    font-size: clamp(180px, 20vw, 420px);
     font-weight: 800;
     margin-top: 0.02em;
     position: relative;
     z-index: 2;
     white-space: nowrap;
+    letter-spacing: 0;
 }
 
 /* Button reset — keeps all type styles intact */

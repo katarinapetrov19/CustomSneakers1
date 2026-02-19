@@ -601,6 +601,18 @@
             });
         }
 
+        // ── Letter-spacing: expand word to fill viewport width ───────────────
+        function fitLetterSpacing() {
+            // Measure natural width at zero spacing, then compute exact gap needed
+            btn.style.letterSpacing = '0px';
+            const naturalWidth = btn.scrollWidth; // forces synchronous reflow
+            const available    = window.innerWidth - (window.innerWidth * 0.02); // minus 2vw left pad
+            const n            = btn.querySelectorAll('.hero-letter').length;
+            if (n <= 1) return;
+            const spacing = (available - naturalWidth) / (n - 1);
+            btn.style.letterSpacing = `${spacing}px`;
+        }
+
         // ── Single letter spin ───────────────────────────────────────────────
         function spinLetter(el, target, duration) {
             return new Promise(resolve => {
@@ -644,6 +656,7 @@
 
             currentWord = next;
             btn.setAttribute('aria-label', `I am no ${currentWord.toLowerCase()} — click to change`);
+            fitLetterSpacing();
             isSpinning = false;
         }
 
@@ -658,6 +671,10 @@
         fitLetterSpacing();
 
         btn.addEventListener('click', spin);
+        window.addEventListener('resize', fitLetterSpacing);
+
+        // Init: fit spacing for the initial word
+        fitLetterSpacing();
     })();
 
     </script>
