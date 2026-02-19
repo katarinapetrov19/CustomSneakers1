@@ -32,8 +32,8 @@
         <div class="hero-background"></div>
         <div class="hero-graphic-text">
             <h1 class="hero-large-title" id="parallaxText">
-                <span class="line-1">I AM NO</span>
-                <span class="line-2">ARTIST</span>
+                <span class="line-1">I'M NO</span>
+                <button class="line-2" id="wordSlot" aria-label="I'm no artist — click to change">ARTIST</button>
             </h1>
         </div>
     </section>
@@ -432,9 +432,9 @@
             sprayFadeFrame = requestAnimationFrame(fadeSpray);
         }
 
-        // Split text into individual letter spans
+        // Split line-1 text into individual letter spans for mouse parallax
         function wrapLetters() {
-            const lines = heroTitle.querySelectorAll('.line-1, .line-2');
+            const lines = heroTitle.querySelectorAll('.line-1');
             lines.forEach(line => {
                 const text = line.textContent;
                 const wrapped = text.split('').map(char => {
@@ -484,201 +484,15 @@
         // Reset positions when mouse leaves
         hero.addEventListener('mouseleave', () => {
             letters.forEach(letter => {
-                if (!letter.classList.contains('exploding')) {
-                    letter.style.transform = 'translate(0, 0)';
-                }
+                letter.style.transform = 'translate(0, 0)';
             });
         });
 
-        // Function to reset letters to original state
-        function resetLetters() {
-            letters.forEach(letter => {
-                letter.classList.remove('exploding');
-                letter.classList.add('resetting');
-                letter.style.transform = 'translate(0, 0)';
-                letter.style.opacity = '1';
-            });
-            
-            // Remove resetting class after animation completes
-            setTimeout(() => {
-                letters.forEach(letter => {
-                    letter.classList.remove('resetting');
-                });
-            }, 800);
-            
-            isAnimating = false;
-        }
-
-        // Check if hero section is visible and reset letters if needed
-        function checkHeroVisibility() {
-            const heroRect = hero.getBoundingClientRect();
-            // Check if hero section is mostly visible (at least 50% in viewport)
-            const heroVisibleHeight = Math.min(heroRect.bottom, window.innerHeight) - Math.max(heroRect.top, 0);
-            const isHeroVisible = heroVisibleHeight > window.innerHeight * 0.5;
-            
-            // If hero is visible and letters are exploded, reset them
-            if (isHeroVisible && isAnimating) {
-                resetLetters();
-            }
-        }
-
-        // Listen for scroll to reset letters when hero comes back into view
-        window.addEventListener('scroll', checkHeroVisibility);
-        window.addEventListener('resize', checkHeroVisibility);
-
-        // Click explosion animation
-        let isAnimating = false;
         const planPrices = {
             mini: '8€',
             midi: '11€',
             maxi: '15€'
         };
-        const planImages = {
-            mini: {
-                src: 'img/BW.jpg',
-                alt: 'Mail Club mini preview'
-            },
-            midi: {
-                src: 'img/head.jpg',
-                alt: 'Mail Club midi preview'
-            },
-            maxi: {
-                src: 'img/Kat.jpg',
-                alt: 'Mail Club maxi preview'
-            }
-        };
-
-        const getMailClubImages = () => {
-            const galleryItems = document.querySelectorAll('.gallery-item');
-            const images = [];
-            galleryItems.forEach(item => {
-                const img = item.querySelector('.gallery-image');
-                if (img && img.src) {
-                    images.push(img.src);
-                }
-            });
-            if (images.length > 0) {
-                return images;
-            }
-            return Object.values(planImages).map((image) => image.src);
-        };
-
-        heroTitle.addEventListener('click', (e) => {
-            if (isAnimating) return;
-            isAnimating = true;
-            
-            // Remove mouse move listener during animation
-            const originalMouseMove = hero.onmousemove;
-            hero.onmousemove = null;
-            
-            // Get center of screen
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            
-            // Explode letters
-            letters.forEach((letter, index) => {
-                letter.classList.add('exploding');
-                
-                const rect = letter.getBoundingClientRect();
-                const letterCenterX = rect.left + rect.width / 2;
-                const letterCenterY = rect.top + rect.height / 2;
-                
-                // Calculate direction from center to letter
-                const distX = letterCenterX - centerX;
-                const distY = letterCenterY - centerY;
-                const distance = Math.sqrt(distX * distX + distY * distY);
-                
-                // Normalize direction
-                const dirX = distX / distance;
-                const dirY = distY / distance;
-                
-                // Randomize explosion force and direction slightly
-                const force = 800 + Math.random() * 400;
-                const randomAngle = (Math.random() - 0.5) * 0.3; // ±15 degrees
-                const cos = Math.cos(randomAngle);
-                const sin = Math.sin(randomAngle);
-                const finalDirX = dirX * cos - dirY * sin;
-                const finalDirY = dirX * sin + dirY * cos;
-                
-                // Apply explosion transform
-                const moveX = finalDirX * force;
-                const moveY = finalDirY * force;
-                const rotation = (Math.random() - 0.5) * 720; // Random rotation
-                
-                letter.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotation}deg)`;
-                letter.style.opacity = '0';
-            });
-            
-            // Collect all artwork images (gallery or mail club cards)
-            const allArtworkImages = getMailClubImages();
-            
-            // Create artwork reveal container
-            const artworkReveal = document.createElement('div');
-            artworkReveal.className = 'sneaker-reveal';
-            document.body.appendChild(artworkReveal);
-            
-            // Show first artwork after explosion animation (1.2s)
-            setTimeout(() => {
-                artworkReveal.classList.add('active');
-                
-                // Start cycling through all images
-                let currentIndex = 0;
-                let currentImg = null;
-                
-                const cycleInterval = setInterval(() => {
-                    // Fade out current image if exists
-                    if (currentImg) {
-                        currentImg.style.opacity = '0';
-                        setTimeout(() => {
-                            if (currentImg && currentImg.parentNode) {
-                                currentImg.remove();
-                            }
-                        }, 100);
-                    }
-                    
-                    // Create new image with consistent size
-                    const artworkImg = document.createElement('img');
-                    artworkImg.src = allArtworkImages[currentIndex];
-                    artworkImg.alt = 'Artwork';
-                    artworkImg.style.opacity = '0';
-                    
-                    artworkReveal.appendChild(artworkImg);
-                    currentImg = artworkImg;
-                    
-                    // Fade in new image
-                    setTimeout(() => {
-                        if (artworkImg.parentNode) {
-                            artworkImg.style.opacity = '1';
-                        }
-                    }, 10);
-                    
-                    // Move to next image
-                    currentIndex = (currentIndex + 1) % allArtworkImages.length;
-                }, 120); // Change image every 120ms for fast animation
-                
-                // Start scrolling to gallery section and fade out animation at the same time
-                setTimeout(() => {
-                    // Start scrolling
-                    const gallerySection = document.getElementById('gallery') || document.querySelector('.gallery');
-                    if (gallerySection) {
-                        gallerySection.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                    
-                    // Stop cycling images
-                    clearInterval(cycleInterval);
-                    
-                    // Fade out animation
-                    artworkReveal.classList.remove('active');
-                    setTimeout(() => {
-                        artworkReveal.remove();
-                        isAnimating = false;
-                    }, 500);
-                }, 3000); // Start scroll and fade at 3 seconds
-            }, 1200);
-        });
 
         const homePlanSelect = document.getElementById('homePlanSelect');
         const homeSubscribeBtn = document.getElementById('homeSubscribeBtn');
@@ -689,21 +503,9 @@
                 const price = planPrices[selectedPlan] || planPrices.mini;
                 homeSubscribeBtn.textContent = `Subscribe — ${price} / month`;
             };
-            const updateHomeCtaImage = () => {
-                if (!homePlanImage) return;
-                const selectedPlan = homePlanSelect.value || 'mini';
-                const image = planImages[selectedPlan] || planImages.mini;
-                homePlanImage.src = image.src;
-                homePlanImage.alt = image.alt;
-            };
-
             updateHomeCtaPrice();
-            updateHomeCtaImage();
 
-            homePlanSelect.addEventListener('change', () => {
-                updateHomeCtaPrice();
-                updateHomeCtaImage();
-            });
+            homePlanSelect.addEventListener('change', updateHomeCtaPrice);
             homeSubscribeBtn.addEventListener('click', () => {
                 const selectedPlan = homePlanSelect.value || 'mini';
                 window.location.href = `projects.html?plan=${encodeURIComponent(selectedPlan)}`;
@@ -758,9 +560,125 @@
             });
         }
 
+    // ── Word Slot Machine ────────────────────────────────────────────────────
+    (function () {
+        // Editable word list — singular nouns, same bold energy
+        const WORDS = [
+            'ARTIST', 'DANCER', 'PILOT', 'JOKER', 'MAKER',
+            'NINJA',  'REBEL',  'LOVER', 'BOXER', 'RIDER',
+            'SAINT',  'THIEF',  'CODER', 'RACER', 'LONER',
+            'DREAMER','HUNTER', 'ROVER', 'WITCH', 'GHOST',
+        ];
+
+        const CHARS          = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const SPIN_INTERVAL  = 38;   // ms between character flips
+        const SPIN_DURATION  = 360;  // ms each letter spins before resolving
+        const STAGGER        = 60;   // ms delay between each letter settling
+
+        const btn = document.getElementById('wordSlot');
+        if (!btn) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let currentWord = 'ARTIST';
+        let isSpinning  = false;
+
+        // ── Helpers ──────────────────────────────────────────────────────────
+        const rndChar = () => CHARS[Math.floor(Math.random() * CHARS.length)];
+
+        function pickNext() {
+            const pool = WORDS.filter(w => w !== currentWord);
+            return pool[Math.floor(Math.random() * pool.length)];
+        }
+
+        function buildLetters(word) {
+            btn.innerHTML = '';
+            return [...word].map(() => {
+                const span = document.createElement('span');
+                span.className = 'hero-letter';
+                span.textContent = rndChar();
+                btn.appendChild(span);
+                return span;
+            });
+        }
+
+        // ── Letter-spacing fit ───────────────────────────────────────────────
+        function fitLetterSpacing() {
+            btn.style.letterSpacing = '';
+            requestAnimationFrame(() => {
+                const available = window.innerWidth * 0.96;
+                const natural   = btn.scrollWidth;
+                if (natural > available) {
+                    const n = btn.querySelectorAll('.hero-letter').length;
+                    btn.style.letterSpacing = `-${(natural - available) / Math.max(n - 1, 1)}px`;
+                }
+            });
+        }
+
+        // ── Single letter spin ───────────────────────────────────────────────
+        function spinLetter(el, target, duration) {
+            return new Promise(resolve => {
+                if (reducedMotion) {
+                    el.textContent = target;
+                    resolve();
+                    return;
+                }
+                el.classList.add('is-spinning');
+                const deadline = Date.now() + duration;
+                const tick = setInterval(() => {
+                    if (Date.now() >= deadline) {
+                        clearInterval(tick);
+                        el.textContent = target;
+                        el.classList.remove('is-spinning');
+                        el.classList.add('is-settling');
+                        el.addEventListener('animationend', () => el.classList.remove('is-settling'), { once: true });
+                        resolve();
+                    } else {
+                        el.textContent = rndChar();
+                    }
+                }, SPIN_INTERVAL);
+            });
+        }
+
+        // ── Main spin ────────────────────────────────────────────────────────
+        async function spin() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const next    = pickNext();
+            const letters = buildLetters(next);
+            fitLetterSpacing();
+
+            await Promise.all(
+                [...next].map((char, i) =>
+                    new Promise(resolve =>
+                        setTimeout(() => spinLetter(letters[i], char, SPIN_DURATION).then(resolve), i * STAGGER)
+                    )
+                )
+            );
+
+            currentWord = next;
+            btn.setAttribute('aria-label', `I'm no ${currentWord.toLowerCase()} — click to change`);
+            fitLetterSpacing();
+            isSpinning = false;
+        }
+
+        // ── Init ─────────────────────────────────────────────────────────────
+        btn.innerHTML = '';
+        [...currentWord].forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'hero-letter';
+            span.textContent = char;
+            btn.appendChild(span);
+        });
+        fitLetterSpacing();
+
+        btn.addEventListener('click', spin);
+        window.addEventListener('resize', fitLetterSpacing);
+    })();
+
     </script>
 
-    
+
 </body>
 </html>
 

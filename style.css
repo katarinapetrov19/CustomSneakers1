@@ -311,15 +311,67 @@ section {
     }
 }
 
-.hero-large-title .line-2 {
+.hero-large-title .line-2,
+button.line-2 {
     display: block;
     font-size: clamp(320px, 40vw, 704px);
     font-weight: 800;
     margin-top: 0.05em;
-    margin-left: 0.00em;
     position: relative;
     z-index: 2;
     white-space: nowrap;
+}
+
+/* Button reset — keeps all type styles intact */
+button.line-2 {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+    pointer-events: auto;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button.line-2:focus-visible {
+    outline: 3px solid rgba(42, 42, 42, 0.35);
+    outline-offset: 6px;
+    border-radius: 2px;
+}
+
+/* Individual letter slots */
+.hero-letter {
+    display: inline-block;
+    will-change: transform, opacity;
+    transition: opacity 0.05s linear;
+}
+
+.hero-letter.is-spinning {
+    opacity: 0.7;
+}
+
+@keyframes letterSettle {
+    from {
+        transform: translateY(-20%);
+        opacity: 0.4;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hero-letter.is-settling {
+    animation: letterSettle 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-letter.is-settling {
+        animation: none;
+    }
 }
 
 .hero-content {
