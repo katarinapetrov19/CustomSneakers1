@@ -314,7 +314,7 @@ section {
 .hero-large-title .line-2,
 button.line-2 {
     display: block;
-    font-size: clamp(180px, 20vw, 420px);
+    font-size: clamp(240px, 30vw, 600px);
     font-weight: 800;
     margin-top: 0.02em;
     position: relative;
