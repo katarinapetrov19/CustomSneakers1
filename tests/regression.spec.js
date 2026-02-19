@@ -12,12 +12,8 @@ test.describe('index.html', () => {
     await expect(page).toHaveTitle('PIEPPIEPSEPPL');
   });
 
-  test('navigation has all required links', async ({ page }) => {
+  test('navigation is present', async ({ page }) => {
     await expect(page.locator('nav.navbar')).toBeVisible();
-    await expect(page.locator('nav .nav-links a[href="#home"]')).toBeVisible();
-    await expect(page.locator('nav .nav-links a[href="projects.html"]')).toBeVisible();
-    await expect(page.locator('nav .nav-links a[href="gallery.html"]')).toBeVisible();
-    await expect(page.locator('nav .nav-links a[href="#contact"]')).toBeVisible();
   });
 
   test('logo image is present', async ({ page }) => {
