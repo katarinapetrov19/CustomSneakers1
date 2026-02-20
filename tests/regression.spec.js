@@ -59,7 +59,7 @@ test.describe('index.html', () => {
         .map(s => s.src);
     });
     expect(mp4Sources.length).toBeGreaterThan(0);
-    expect(mp4Sources[0]).toContain('fabrik.mp4');
+    expect(mp4Sources[0]).toContain('Fabrik.mp4');
   });
 
   test('mail club section is present', async ({ page }) => {
