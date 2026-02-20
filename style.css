@@ -2858,6 +2858,15 @@ footer.footer *,
     border-color: #2a2a2a;
 }
 
+.subscribe-field-input.is-invalid {
+    border-color: #cf1322;
+}
+
+.subscribe-field-label.required::after {
+    content: ' *';
+    color: #cf1322;
+}
+
 .subscribe-submit-btn {
     width: 100%;
     padding: 1rem 2rem;

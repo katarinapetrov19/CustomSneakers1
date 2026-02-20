@@ -157,28 +157,28 @@
         <div class="subscribe-fields">
             <div class="subscribe-fields-row">
                 <div>
-                    <label class="subscribe-field-label" for="subscribeName">Name</label>
-                    <input class="subscribe-field-input" type="text" id="subscribeName" placeholder="Your name" autocomplete="name">
+                    <label class="subscribe-field-label required" for="subscribeName">Name</label>
+                    <input class="subscribe-field-input" type="text" id="subscribeName" placeholder="Your name" autocomplete="name" required>
                 </div>
                 <div>
-                    <label class="subscribe-field-label" for="subscribeEmail">Email</label>
-                    <input class="subscribe-field-input" type="email" id="subscribeEmail" placeholder="your@email.com" autocomplete="email">
+                    <label class="subscribe-field-label required" for="subscribeEmail">Email</label>
+                    <input class="subscribe-field-input" type="email" id="subscribeEmail" placeholder="your@email.com" autocomplete="email" required>
                 </div>
             </div>
-            <label class="subscribe-field-label" for="subscribeAddress">Street address</label>
-            <input class="subscribe-field-input" type="text" id="subscribeAddress" placeholder="123 Main St" autocomplete="street-address">
+            <label class="subscribe-field-label required" for="subscribeAddress">Street address</label>
+            <input class="subscribe-field-input" type="text" id="subscribeAddress" placeholder="123 Main St" autocomplete="street-address" required>
             <div class="subscribe-fields-row">
                 <div>
-                    <label class="subscribe-field-label" for="subscribeCity">City</label>
-                    <input class="subscribe-field-input" type="text" id="subscribeCity" placeholder="City" autocomplete="address-level2">
+                    <label class="subscribe-field-label required" for="subscribeCity">City</label>
+                    <input class="subscribe-field-input" type="text" id="subscribeCity" placeholder="City" autocomplete="address-level2" required>
                 </div>
                 <div>
-                    <label class="subscribe-field-label" for="subscribePostal">Postal code</label>
-                    <input class="subscribe-field-input" type="text" id="subscribePostal" placeholder="12345" autocomplete="postal-code">
+                    <label class="subscribe-field-label required" for="subscribePostal">Postal code</label>
+                    <input class="subscribe-field-input" type="text" id="subscribePostal" placeholder="12345" autocomplete="postal-code" required>
                 </div>
             </div>
-            <label class="subscribe-field-label" for="subscribeCountry">Country</label>
-            <input class="subscribe-field-input" type="text" id="subscribeCountry" placeholder="Country" autocomplete="country-name">
+            <label class="subscribe-field-label required" for="subscribeCountry">Country</label>
+            <input class="subscribe-field-input" type="text" id="subscribeCountry" placeholder="Country" autocomplete="country-name" required>
         </div>
         <div id="paypal-button-container"></div>
         <p id="paypal-message" role="alert"></p>
@@ -767,19 +767,26 @@
         }
 
         function validateFields() {
-            var name    = document.getElementById('subscribeName').value.trim();
-            var email   = document.getElementById('subscribeEmail').value.trim();
-            var address = document.getElementById('subscribeAddress').value.trim();
-            var city    = document.getElementById('subscribeCity').value.trim();
-            var postal  = document.getElementById('subscribePostal').value.trim();
-            var country = document.getElementById('subscribeCountry').value.trim();
-            if (!name)                    return 'Please enter your name.';
-            if (!email || !email.includes('@')) return 'Please enter a valid email address.';
-            if (!address)                 return 'Please enter your street address.';
-            if (!city)                    return 'Please enter your city.';
-            if (!postal)                  return 'Please enter your postal code.';
-            if (!country)                 return 'Please enter your country.';
-            return null;
+            var fields = [
+                { id: 'subscribeName',    test: function(v) { return v.length > 0; } },
+                { id: 'subscribeEmail',   test: function(v) { return v.includes('@'); } },
+                { id: 'subscribeAddress', test: function(v) { return v.length > 0; } },
+                { id: 'subscribeCity',    test: function(v) { return v.length > 0; } },
+                { id: 'subscribePostal',  test: function(v) { return v.length > 0; } },
+                { id: 'subscribeCountry', test: function(v) { return v.length > 0; } }
+            ];
+            var firstInvalid = null;
+            fields.forEach(function(f) {
+                var el = document.getElementById(f.id);
+                var val = el.value.trim();
+                if (!f.test(val)) {
+                    el.classList.add('is-invalid');
+                    if (!firstInvalid) firstInvalid = el;
+                } else {
+                    el.classList.remove('is-invalid');
+                }
+            });
+            return firstInvalid;
         }
 
         function renderPaypalButton() {
@@ -796,9 +803,10 @@
             var price = PRICES[selectedCount];
             var sharedHooks = {
                 onClick: function (data, actions) {
-                    var err = validateFields();
-                    if (err) {
-                        showErrorMessage(err);
+                    var firstInvalid = validateFields();
+                    if (firstInvalid) {
+                        showErrorMessage('Please fill in all required fields.');
+                        firstInvalid.focus();
                         return actions.reject();
                     }
                     return actions.resolve();
