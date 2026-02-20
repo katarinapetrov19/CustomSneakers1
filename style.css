@@ -2689,7 +2689,7 @@ footer.footer *,
     top: 0;
     right: 0;
     height: 100%;
-    width: min(420px, 100vw);
+    width: min(600px, 100vw);
     background: #ffffff;
     z-index: 10001;
     padding: 1.5rem 1.5rem;
@@ -2907,10 +2907,13 @@ footer.footer *,
     background: #ffe0e0;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 620px) {
     #subscribe-sheet {
         width: 100vw;
         padding: 1.5rem 1.25rem;
+    }
+    .subscribe-fields-row {
+        grid-template-columns: 1fr;
     }
 }
 
