@@ -2855,15 +2855,17 @@ footer.footer *,
 .subscribe-submit-btn {
     width: 100%;
     padding: 1rem 2rem;
-    background: #2a2a2a;
-    color: #ffffff;
-    border: none;
+    background: #2a2a2a !important;
+    color: #ffffff !important;
+    border: none !important;
     border-radius: 999px;
     font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 

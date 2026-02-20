@@ -756,7 +756,10 @@
             paypalMessage.textContent = '';
             paypalMessage.className = '';
 
-            if (typeof paypal === 'undefined') return;
+            if (typeof paypal === 'undefined') {
+                showErrorMessage('Payment processing is not configured yet. Please add your PayPal client ID.');
+                return;
+            }
 
             var price = PRICES[selectedCount];
             var config = purchaseType === 'subscribe'
