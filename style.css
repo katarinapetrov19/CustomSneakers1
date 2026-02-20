@@ -2692,13 +2692,13 @@ footer.footer *,
     width: min(420px, 100vw);
     background: #ffffff;
     z-index: 10001;
-    padding: 2rem 1.75rem;
+    padding: 1.5rem 1.5rem;
     overflow-y: auto;
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.33, 1, 0.68, 1);
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 0.75rem;
     box-shadow: -4px 0 32px rgba(0, 0, 0, 0.12);
 }
 
@@ -2727,12 +2727,12 @@ footer.footer *,
 
 .subscribe-sheet-heading {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.4;
     color: #2a2a2a;
     text-transform: none;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding-right: 2rem;
 }
 
@@ -2787,7 +2787,7 @@ footer.footer *,
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.85rem 1rem;
+    padding: 0.6rem 0.85rem;
     cursor: pointer;
     transition: background 0.15s ease;
 }
@@ -2842,15 +2842,15 @@ footer.footer *,
 
 .subscribe-field-input {
     width: 100%;
-    padding: 0.65rem 0.85rem;
+    padding: 0.55rem 0.75rem;
     border: 1.5px solid #e0e0e0;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-family: 'DM Sans', sans-serif;
     color: #2a2a2a;
     background: #ffffff;
     transition: border-color 0.2s ease;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
 .subscribe-field-input:focus {
@@ -2896,6 +2896,10 @@ footer.footer *,
 .paypal-message--success {
     color: #1a7f37;
     background: #d4f5d4;
+    font-size: 1.1rem;
+    padding: 1.25rem;
+    text-align: center;
+    margin-top: 2rem;
 }
 
 .paypal-message--error {

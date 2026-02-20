@@ -174,7 +174,6 @@
             <label class="subscribe-field-label" for="subscribeCountry">Country</label>
             <input class="subscribe-field-input" type="text" id="subscribeCountry" placeholder="Country" autocomplete="country-name">
         </div>
-        <button class="subscribe-submit-btn" id="subscribeSubmitBtn" type="button">Subscribe</button>
         <div id="paypal-button-container"></div>
         <p id="paypal-message" role="alert"></p>
     </div>
@@ -761,6 +760,22 @@
             toggleOnePrice.textContent = price.display;
         }
 
+        function validateFields() {
+            var name    = document.getElementById('subscribeName').value.trim();
+            var email   = document.getElementById('subscribeEmail').value.trim();
+            var address = document.getElementById('subscribeAddress').value.trim();
+            var city    = document.getElementById('subscribeCity').value.trim();
+            var postal  = document.getElementById('subscribePostal').value.trim();
+            var country = document.getElementById('subscribeCountry').value.trim();
+            if (!name)                    return 'Please enter your name.';
+            if (!email || !email.includes('@')) return 'Please enter a valid email address.';
+            if (!address)                 return 'Please enter your street address.';
+            if (!city)                    return 'Please enter your city.';
+            if (!postal)                  return 'Please enter your postal code.';
+            if (!country)                 return 'Please enter your country.';
+            return null;
+        }
+
         function renderPaypalButton() {
             if (paypalInstance) {
                 paypalInstance.close();
@@ -770,26 +785,34 @@
             paypalMessage.textContent = '';
             paypalMessage.className = '';
 
-            if (typeof paypal === 'undefined') {
-                showErrorMessage('Payment processing is not configured yet. Please add your PayPal client ID.');
-                return;
-            }
+            if (typeof paypal === 'undefined') return;
 
             var price = PRICES[selectedCount];
+            var sharedHooks = {
+                onClick: function (data, actions) {
+                    var err = validateFields();
+                    if (err) {
+                        showErrorMessage(err);
+                        return actions.reject();
+                    }
+                    return actions.resolve();
+                },
+                onError: function (err) {
+                    showErrorMessage('Something went wrong. Please try again.');
+                    console.error(err);
+                }
+            };
+
             var config = purchaseType === 'subscribe'
-                ? {
+                ? Object.assign({}, sharedHooks, {
                     createSubscription: function (data, actions) {
                         return actions.subscription.create({ plan_id: PLAN_IDS[selectedCount] });
                     },
                     onApprove: function () {
-                        showSuccessMessage('Subscription confirmed! Welcome to Mail Club.');
-                    },
-                    onError: function (err) {
-                        showErrorMessage('Something went wrong. Please try again.');
-                        console.error(err);
+                        showSuccessMessage('You\'re in! Your first artwork is on its way.');
                     }
-                }
-                : {
+                })
+                : Object.assign({}, sharedHooks, {
                     createOrder: function (data, actions) {
                         return actions.order.create({
                             intent: 'CAPTURE',
@@ -803,12 +826,8 @@
                         return actions.order.capture().then(function () {
                             showSuccessMessage('Payment confirmed! Your artwork is on its way.');
                         });
-                    },
-                    onError: function (err) {
-                        showErrorMessage('Something went wrong. Please try again.');
-                        console.error(err);
                     }
-                };
+                });
 
             paypalInstance = paypal.Buttons(config);
             if (paypalInstance.isEligible()) {
@@ -817,9 +836,13 @@
         }
 
         function showSuccessMessage(msg) {
+            // Hide all sheet content and show only the success state
+            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-price-display, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+                el.style.display = 'none';
+            });
             paypalMessage.textContent = '\u2713 ' + msg;
             paypalMessage.className = 'paypal-message--success';
-            setTimeout(closeSheet, 3000);
+            setTimeout(closeSheet, 3500);
         }
 
         function showErrorMessage(msg) {
@@ -828,12 +851,16 @@
         }
 
         function openSheet() {
+            // Restore any hidden elements from previous success state
+            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-price-display, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+                el.style.display = '';
+            });
             sheet.classList.add('is-open');
             overlay.classList.add('is-open');
             overlay.removeAttribute('aria-hidden');
             document.body.style.overflow = 'hidden';
             updatePriceDisplay();
-            // PayPal button renders only after the Subscribe button is clicked
+            renderPaypalButton();
             setTimeout(function () { if (closeBtn) closeBtn.focus(); }, 50);
         }
 
@@ -842,7 +869,6 @@
             overlay.classList.remove('is-open');
             overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            // Reset PayPal container for next open
             if (paypalInstance) { paypalInstance.close(); paypalInstance = null; }
             paypalContainer.innerHTML = '';
             paypalMessage.textContent = '';
@@ -855,8 +881,7 @@
                 countBtns.forEach(function (b) { b.classList.remove('is-selected'); });
                 this.classList.add('is-selected');
                 updatePriceDisplay();
-                // Only re-render PayPal if it was already shown
-                if (paypalContainer.innerHTML !== '') renderPaypalButton();
+                renderPaypalButton();
             });
         });
 
@@ -864,55 +889,9 @@
             radio.addEventListener('change', function () {
                 purchaseType = this.value;
                 updatePriceDisplay();
-                // Only re-render PayPal if it was already shown
-                if (paypalContainer.innerHTML !== '') renderPaypalButton();
-            });
-        });
-
-        var submitBtn = document.getElementById('subscribeSubmitBtn');
-        if (submitBtn) {
-            submitBtn.addEventListener('click', function () {
-                var name  = document.getElementById('subscribeName').value.trim();
-                var email = document.getElementById('subscribeEmail').value.trim();
-                if (!name) {
-                    showErrorMessage('Please enter your name.');
-                    document.getElementById('subscribeName').focus();
-                    return;
-                }
-                if (!email || !email.includes('@')) {
-                    showErrorMessage('Please enter a valid email address.');
-                    document.getElementById('subscribeEmail').focus();
-                    return;
-                }
-                var address = document.getElementById('subscribeAddress').value.trim();
-                var city    = document.getElementById('subscribeCity').value.trim();
-                var postal  = document.getElementById('subscribePostal').value.trim();
-                var country = document.getElementById('subscribeCountry').value.trim();
-                if (!address) {
-                    showErrorMessage('Please enter your street address.');
-                    document.getElementById('subscribeAddress').focus();
-                    return;
-                }
-                if (!city) {
-                    showErrorMessage('Please enter your city.');
-                    document.getElementById('subscribeCity').focus();
-                    return;
-                }
-                if (!postal) {
-                    showErrorMessage('Please enter your postal code.');
-                    document.getElementById('subscribePostal').focus();
-                    return;
-                }
-                if (!country) {
-                    showErrorMessage('Please enter your country.');
-                    document.getElementById('subscribeCountry').focus();
-                    return;
-                }
-                paypalMessage.textContent = '';
-                paypalMessage.className = '';
                 renderPaypalButton();
             });
-        }
+        });
 
         if (closeBtn) closeBtn.addEventListener('click', closeSheet);
         overlay.addEventListener('click', closeSheet);
