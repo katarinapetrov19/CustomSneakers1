@@ -160,6 +160,7 @@
             <label class="subscribe-field-label" for="subscribeEmail">Email</label>
             <input class="subscribe-field-input" type="email" id="subscribeEmail" placeholder="your@email.com" autocomplete="email">
         </div>
+        <button class="subscribe-submit-btn" id="subscribeSubmitBtn" type="button">Subscribe</button>
         <div id="paypal-button-container"></div>
         <p id="paypal-message" role="alert"></p>
     </div>
@@ -815,16 +816,20 @@
             overlay.removeAttribute('aria-hidden');
             document.body.style.overflow = 'hidden';
             updatePriceDisplay();
-            renderPaypalButton();
+            // PayPal button renders only after the Subscribe button is clicked
             setTimeout(function () { if (closeBtn) closeBtn.focus(); }, 50);
         }
 
         function closeSheet() {
             sheet.classList.remove('is-open');
-            overlay.classList.add('is-open');
             overlay.classList.remove('is-open');
             overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            // Reset PayPal container for next open
+            if (paypalInstance) { paypalInstance.close(); paypalInstance = null; }
+            paypalContainer.innerHTML = '';
+            paypalMessage.textContent = '';
+            paypalMessage.className = '';
         }
 
         countBtns.forEach(function (btn) {
@@ -833,7 +838,8 @@
                 countBtns.forEach(function (b) { b.classList.remove('is-selected'); });
                 this.classList.add('is-selected');
                 updatePriceDisplay();
-                renderPaypalButton();
+                // Only re-render PayPal if it was already shown
+                if (paypalContainer.innerHTML !== '') renderPaypalButton();
             });
         });
 
@@ -841,9 +847,31 @@
             radio.addEventListener('change', function () {
                 purchaseType = this.value;
                 updatePriceDisplay();
-                renderPaypalButton();
+                // Only re-render PayPal if it was already shown
+                if (paypalContainer.innerHTML !== '') renderPaypalButton();
             });
         });
+
+        var submitBtn = document.getElementById('subscribeSubmitBtn');
+        if (submitBtn) {
+            submitBtn.addEventListener('click', function () {
+                var name  = document.getElementById('subscribeName').value.trim();
+                var email = document.getElementById('subscribeEmail').value.trim();
+                if (!name) {
+                    showErrorMessage('Please enter your name.');
+                    document.getElementById('subscribeName').focus();
+                    return;
+                }
+                if (!email || !email.includes('@')) {
+                    showErrorMessage('Please enter a valid email address.');
+                    document.getElementById('subscribeEmail').focus();
+                    return;
+                }
+                paypalMessage.textContent = '';
+                paypalMessage.className = '';
+                renderPaypalButton();
+            });
+        }
 
         if (closeBtn) closeBtn.addEventListener('click', closeSheet);
         overlay.addEventListener('click', closeSheet);

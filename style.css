@@ -2852,6 +2852,26 @@ footer.footer *,
     border-color: #2a2a2a;
 }
 
+.subscribe-submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #2a2a2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.subscribe-submit-btn:hover {
+    background: #000;
+    transform: translateY(-1px);
+}
+
 #paypal-button-container {
     min-height: 45px;
 }
