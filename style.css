@@ -2690,7 +2690,7 @@ footer.footer *,
     right: 0;
     height: 100%;
     width: min(600px, 100vw);
-    background: #ffffff;
+    background: #111111;
     z-index: 10001;
     padding: 1.5rem 1.5rem;
     overflow-y: auto;
@@ -2699,7 +2699,7 @@ footer.footer *,
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    box-shadow: -4px 0 32px rgba(0, 0, 0, 0.12);
+    box-shadow: -4px 0 48px rgba(0, 0, 0, 0.5);
 }
 
 #subscribe-sheet.is-open {
@@ -2715,14 +2715,14 @@ footer.footer *,
     font-size: 1.75rem;
     line-height: 1;
     cursor: pointer;
-    color: #2a2a2a;
+    color: #ffffff;
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     transition: opacity 0.2s ease;
 }
 
 #subscribe-close:hover {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 .subscribe-sheet-heading {
@@ -2730,7 +2730,7 @@ footer.footer *,
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4;
-    color: #2a2a2a;
+    color: #ffffff;
     text-transform: none;
     margin-top: 1.5rem;
     padding-right: 2rem;
@@ -2745,9 +2745,9 @@ footer.footer *,
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 2px solid #e0e0e0;
-    background: #ffffff;
-    color: #2a2a2a;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    color: #ffffff;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -2758,27 +2758,27 @@ footer.footer *,
 }
 
 .artwork-count-btn:hover {
-    border-color: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.7);
 }
 
 .artwork-count-btn.is-selected {
-    background: #2a2a2a;
-    color: #ffffff;
-    border-color: #2a2a2a;
+    background: #ffffff;
+    color: #111111;
+    border-color: #ffffff;
 }
 
 .subscribe-price-display {
     font-family: 'Playpen_Sans', 'DM Sans', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2a2a2a;
+    color: #ffffff;
     margin: 0;
 }
 
 .subscribe-toggle {
     display: flex;
     flex-direction: column;
-    border: 1.5px solid #e0e0e0;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -2793,16 +2793,16 @@ footer.footer *,
 }
 
 .subscribe-toggle-option + .subscribe-toggle-option {
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .subscribe-toggle-option:hover {
-    background: #f8f8f8;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .subscribe-toggle-option input[type="radio"] {
     cursor: pointer;
-    accent-color: #2a2a2a;
+    accent-color: #ffffff;
     width: 16px;
     height: 16px;
     flex-shrink: 0;
@@ -2811,13 +2811,13 @@ footer.footer *,
 .subscribe-toggle-label {
     flex: 1;
     font-size: 0.95rem;
-    color: #2a2a2a;
+    color: #ffffff;
     font-weight: 500;
 }
 
 .subscribe-toggle-price {
     font-size: 0.9rem;
-    color: #666;
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 400;
 }
 
@@ -2836,35 +2836,40 @@ footer.footer *,
 .subscribe-field-label {
     font-size: 0.85rem;
     font-weight: 500;
-    color: #2a2a2a;
+    color: rgba(255, 255, 255, 0.7);
     letter-spacing: 0.3px;
 }
 
 .subscribe-field-input {
     width: 100%;
     padding: 0.55rem 0.75rem;
-    border: 1.5px solid #e0e0e0;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
     border-radius: 6px;
     font-size: 0.9rem;
     font-family: 'DM Sans', sans-serif;
-    color: #2a2a2a;
-    background: #ffffff;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.07);
     transition: border-color 0.2s ease;
     margin-bottom: 0.25rem;
 }
 
+.subscribe-field-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
 .subscribe-field-input:focus {
     outline: none;
-    border-color: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .subscribe-field-input.is-invalid {
-    border-color: #cf1322;
+    border-color: #ff6b6b;
 }
 
 .subscribe-field-label.required::after {
     content: ' *';
-    color: #cf1322;
+    color: #ff6b6b;
 }
 
 .subscribe-submit-btn {
@@ -2903,17 +2908,22 @@ footer.footer *,
 }
 
 .paypal-message--success {
-    color: #1a7f37;
-    background: #d4f5d4;
+    color: #6effa0;
+    background: rgba(110, 255, 160, 0.1);
+    border: 1px solid rgba(110, 255, 160, 0.3);
     font-size: 1.1rem;
     padding: 1.25rem;
     text-align: center;
     margin-top: 2rem;
+    border-radius: 8px;
 }
 
 .paypal-message--error {
-    color: #cf1322;
-    background: #ffe0e0;
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
 }
 
 @media (max-width: 620px) {
