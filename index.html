@@ -159,6 +159,20 @@
             <input class="subscribe-field-input" type="text" id="subscribeName" placeholder="Your name" autocomplete="name">
             <label class="subscribe-field-label" for="subscribeEmail">Email</label>
             <input class="subscribe-field-input" type="email" id="subscribeEmail" placeholder="your@email.com" autocomplete="email">
+            <label class="subscribe-field-label" for="subscribeAddress">Street address</label>
+            <input class="subscribe-field-input" type="text" id="subscribeAddress" placeholder="123 Main St" autocomplete="street-address">
+            <div class="subscribe-fields-row">
+                <div>
+                    <label class="subscribe-field-label" for="subscribeCity">City</label>
+                    <input class="subscribe-field-input" type="text" id="subscribeCity" placeholder="City" autocomplete="address-level2">
+                </div>
+                <div>
+                    <label class="subscribe-field-label" for="subscribePostal">Postal code</label>
+                    <input class="subscribe-field-input" type="text" id="subscribePostal" placeholder="12345" autocomplete="postal-code">
+                </div>
+            </div>
+            <label class="subscribe-field-label" for="subscribeCountry">Country</label>
+            <input class="subscribe-field-input" type="text" id="subscribeCountry" placeholder="Country" autocomplete="country-name">
         </div>
         <button class="subscribe-submit-btn" id="subscribeSubmitBtn" type="button">Subscribe</button>
         <div id="paypal-button-container"></div>
@@ -868,6 +882,30 @@
                 if (!email || !email.includes('@')) {
                     showErrorMessage('Please enter a valid email address.');
                     document.getElementById('subscribeEmail').focus();
+                    return;
+                }
+                var address = document.getElementById('subscribeAddress').value.trim();
+                var city    = document.getElementById('subscribeCity').value.trim();
+                var postal  = document.getElementById('subscribePostal').value.trim();
+                var country = document.getElementById('subscribeCountry').value.trim();
+                if (!address) {
+                    showErrorMessage('Please enter your street address.');
+                    document.getElementById('subscribeAddress').focus();
+                    return;
+                }
+                if (!city) {
+                    showErrorMessage('Please enter your city.');
+                    document.getElementById('subscribeCity').focus();
+                    return;
+                }
+                if (!postal) {
+                    showErrorMessage('Please enter your postal code.');
+                    document.getElementById('subscribePostal').focus();
+                    return;
+                }
+                if (!country) {
+                    showErrorMessage('Please enter your country.');
+                    document.getElementById('subscribeCountry').focus();
                     return;
                 }
                 paypalMessage.textContent = '';
