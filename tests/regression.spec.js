@@ -72,6 +72,36 @@ test.describe('index.html', () => {
     await expect(btn).toContainText('Subscribe — 15€ / month');
   });
 
+  test('subscribe button opens side sheet', async ({ page }) => {
+    // Use JS click to avoid scroll-snap / navbar interception across browsers
+    await page.evaluate(() => document.getElementById('homeSubscribeBtn').click());
+    await expect(page.locator('#subscribe-sheet')).toHaveClass(/is-open/);
+    await expect(page.locator('#subscribe-overlay')).toHaveClass(/is-open/);
+  });
+
+  test('side sheet closes on Esc key', async ({ page }) => {
+    await page.evaluate(() => document.getElementById('homeSubscribeBtn').click());
+    await expect(page.locator('#subscribe-sheet')).toHaveClass(/is-open/);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#subscribe-sheet')).not.toHaveClass(/is-open/);
+  });
+
+  test('side sheet closes on overlay click', async ({ page }) => {
+    await page.evaluate(() => document.getElementById('homeSubscribeBtn').click());
+    await expect(page.locator('#subscribe-sheet')).toHaveClass(/is-open/);
+    await page.evaluate(() => document.getElementById('subscribe-overlay').click());
+    await expect(page.locator('#subscribe-sheet')).not.toHaveClass(/is-open/);
+  });
+
+  test('side sheet artwork count buttons update price', async ({ page }) => {
+    await page.evaluate(() => document.getElementById('homeSubscribeBtn').click());
+    await expect(page.locator('.subscribe-price-display')).toContainText('8€');
+    await page.evaluate(() => document.querySelector('.artwork-count-btn[data-count="2"]').click());
+    await expect(page.locator('.subscribe-price-display')).toContainText('11€');
+    await page.evaluate(() => document.querySelector('.artwork-count-btn[data-count="3"]').click());
+    await expect(page.locator('.subscribe-price-display')).toContainText('15€');
+  });
+
   test('contact section has email link', async ({ page }) => {
     const contact = page.locator('section#contact');
     await expect(contact).toBeVisible();

@@ -131,6 +131,42 @@
         </div>
     </footer>
 
+    <!-- Subscribe Side Sheet -->
+    <div id="subscribe-overlay" aria-hidden="true"></div>
+    <div id="subscribe-sheet" role="dialog" aria-modal="true" aria-label="Subscribe to Mail Club">
+        <button id="subscribe-close" aria-label="Close">&times;</button>
+        <h2 class="subscribe-sheet-heading">How many artworks would you like to receive monthly?</h2>
+        <div class="artwork-count-group" role="group" aria-label="Number of artworks">
+            <button class="artwork-count-btn is-selected" data-count="1">1</button>
+            <button class="artwork-count-btn" data-count="2">2</button>
+            <button class="artwork-count-btn" data-count="3">3</button>
+        </div>
+        <p class="subscribe-price-display">8€ / month</p>
+        <div class="subscribe-toggle">
+            <label class="subscribe-toggle-option">
+                <input type="radio" name="purchase-type" value="subscribe" checked>
+                <span class="subscribe-toggle-label">Subscribe</span>
+                <span class="subscribe-toggle-price" id="toggleSubPrice">8€/month</span>
+            </label>
+            <label class="subscribe-toggle-option">
+                <input type="radio" name="purchase-type" value="one-time">
+                <span class="subscribe-toggle-label">One-time</span>
+                <span class="subscribe-toggle-price" id="toggleOnePrice">8€</span>
+            </label>
+        </div>
+        <div class="subscribe-fields">
+            <label class="subscribe-field-label" for="subscribeName">Name</label>
+            <input class="subscribe-field-input" type="text" id="subscribeName" placeholder="Your name" autocomplete="name">
+            <label class="subscribe-field-label" for="subscribeEmail">Email</label>
+            <input class="subscribe-field-input" type="email" id="subscribeEmail" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div id="paypal-button-container"></div>
+        <p id="paypal-message" role="alert"></p>
+    </div>
+
+    <!-- PayPal SDK — replace YOUR_CLIENT_ID with your sandbox/live client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR&intent=subscription&vault=true"></script>
+
     <!-- Mouse Parallax Script -->
     <script>
         // Projects section: single view, scroll triggers next/prev project (new bg, video, text)
@@ -668,6 +704,155 @@
 
         // Init: fit spacing for the initial word
         fitLetterSpacing();
+    })();
+
+    // ── Subscribe Side Sheet ─────────────────────────────────────────────────
+    (function () {
+        // Replace these with your real PayPal Plan IDs from the dashboard
+        var PLAN_IDS = {
+            1: 'YOUR_PLAN_ID_1', // 1 artwork — 8€/month
+            2: 'YOUR_PLAN_ID_2', // 2 artworks — 11€/month
+            3: 'YOUR_PLAN_ID_3'  // 3 artworks — 15€/month
+        };
+        var PRICES = {
+            1: { display: '8€', monthly: '8€ / month', eur: '8.00' },
+            2: { display: '11€', monthly: '11€ / month', eur: '11.00' },
+            3: { display: '15€', monthly: '15€ / month', eur: '15.00' }
+        };
+
+        var selectedCount = 1;
+        var purchaseType = 'subscribe';
+        var paypalInstance = null;
+
+        var overlay      = document.getElementById('subscribe-overlay');
+        var sheet        = document.getElementById('subscribe-sheet');
+        var closeBtn     = document.getElementById('subscribe-close');
+        var countBtns    = document.querySelectorAll('.artwork-count-btn');
+        var priceDisplay = document.querySelector('.subscribe-price-display');
+        var toggleSubPrice = document.getElementById('toggleSubPrice');
+        var toggleOnePrice = document.getElementById('toggleOnePrice');
+        var purchaseTypeRadios = document.querySelectorAll('input[name="purchase-type"]');
+        var paypalContainer = document.getElementById('paypal-button-container');
+        var paypalMessage   = document.getElementById('paypal-message');
+
+        if (!overlay || !sheet) return;
+
+        function updatePriceDisplay() {
+            var price = PRICES[selectedCount];
+            priceDisplay.textContent = purchaseType === 'subscribe'
+                ? price.monthly
+                : price.display + ' (one-time)';
+            toggleSubPrice.textContent = price.display + '/month';
+            toggleOnePrice.textContent = price.display;
+        }
+
+        function renderPaypalButton() {
+            if (paypalInstance) {
+                paypalInstance.close();
+                paypalInstance = null;
+            }
+            paypalContainer.innerHTML = '';
+            paypalMessage.textContent = '';
+            paypalMessage.className = '';
+
+            if (typeof paypal === 'undefined') return;
+
+            var price = PRICES[selectedCount];
+            var config = purchaseType === 'subscribe'
+                ? {
+                    createSubscription: function (data, actions) {
+                        return actions.subscription.create({ plan_id: PLAN_IDS[selectedCount] });
+                    },
+                    onApprove: function () {
+                        showSuccessMessage('Subscription confirmed! Welcome to Mail Club.');
+                    },
+                    onError: function (err) {
+                        showErrorMessage('Something went wrong. Please try again.');
+                        console.error(err);
+                    }
+                }
+                : {
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            intent: 'CAPTURE',
+                            purchase_units: [{
+                                amount: { value: price.eur, currency_code: 'EUR' },
+                                description: selectedCount + ' artwork(s) — one-time purchase'
+                            }]
+                        });
+                    },
+                    onApprove: function (data, actions) {
+                        return actions.order.capture().then(function () {
+                            showSuccessMessage('Payment confirmed! Your artwork is on its way.');
+                        });
+                    },
+                    onError: function (err) {
+                        showErrorMessage('Something went wrong. Please try again.');
+                        console.error(err);
+                    }
+                };
+
+            paypalInstance = paypal.Buttons(config);
+            if (paypalInstance.isEligible()) {
+                paypalInstance.render('#paypal-button-container');
+            }
+        }
+
+        function showSuccessMessage(msg) {
+            paypalMessage.textContent = '\u2713 ' + msg;
+            paypalMessage.className = 'paypal-message--success';
+            setTimeout(closeSheet, 3000);
+        }
+
+        function showErrorMessage(msg) {
+            paypalMessage.textContent = '\u2717 ' + msg;
+            paypalMessage.className = 'paypal-message--error';
+        }
+
+        function openSheet() {
+            sheet.classList.add('is-open');
+            overlay.classList.add('is-open');
+            overlay.removeAttribute('aria-hidden');
+            document.body.style.overflow = 'hidden';
+            updatePriceDisplay();
+            renderPaypalButton();
+            setTimeout(function () { if (closeBtn) closeBtn.focus(); }, 50);
+        }
+
+        function closeSheet() {
+            sheet.classList.remove('is-open');
+            overlay.classList.add('is-open');
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        countBtns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                selectedCount = parseInt(this.dataset.count, 10);
+                countBtns.forEach(function (b) { b.classList.remove('is-selected'); });
+                this.classList.add('is-selected');
+                updatePriceDisplay();
+                renderPaypalButton();
+            });
+        });
+
+        purchaseTypeRadios.forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                purchaseType = this.value;
+                updatePriceDisplay();
+                renderPaypalButton();
+            });
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', closeSheet);
+        overlay.addEventListener('click', closeSheet);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && sheet.classList.contains('is-open')) closeSheet();
+        });
+
+        var subscribeBtn = document.getElementById('homeSubscribeBtn');
+        if (subscribeBtn) subscribeBtn.addEventListener('click', openSheet);
     })();
 
     </script>
