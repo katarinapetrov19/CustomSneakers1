@@ -15,9 +15,14 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="#home" class="logo">
+            <button class="logo-menu-btn" id="logoMenuBtn" aria-label="Open menu" aria-expanded="false">
                 <img src="img/logo.svg" alt="PIEPPIEPSEPPL" class="logo-img">
-            </a>
+                <span class="hamburger-icon" aria-hidden="true">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </span>
+            </button>
         </div>
     </nav>
 
@@ -917,8 +922,48 @@
         if (subscribeBtn) subscribeBtn.addEventListener('click', openSheet);
     })();
 
+    (function() {
+        var btn = document.getElementById('logoMenuBtn');
+        var menu = document.getElementById('fullscreen-menu');
+        var overlay = document.getElementById('nav-overlay');
+
+        function openMenu() {
+            menu.classList.add('is-open');
+            overlay.classList.add('is-open');
+            btn.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            menu.setAttribute('aria-hidden', 'false');
+            btn.setAttribute('aria-label', 'Close menu');
+        }
+        function closeMenu() {
+            menu.classList.remove('is-open');
+            overlay.classList.remove('is-open');
+            btn.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+            btn.setAttribute('aria-label', 'Open menu');
+        }
+
+        btn.addEventListener('click', function() {
+            menu.classList.contains('is-open') ? closeMenu() : openMenu();
+        });
+        overlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMenu();
+        });
+    })();
+
     </script>
 
+    <div id="nav-overlay" aria-hidden="true"></div>
+    <nav id="fullscreen-menu" role="dialog" aria-modal="true" aria-label="Site navigation" aria-hidden="true">
+        <ul class="menu-links">
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="projects.html">Mail Club</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
 
 </body>
 </html>
