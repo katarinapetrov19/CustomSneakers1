@@ -51,9 +51,6 @@
                         </svg>
                         <span>Instagram</span>
                     </a>
-                    <a href="fabrik.html" class="projects-story-link" id="projectsStoryLink">
-                        See how it's made →
-                    </a>
                 </div>
             </div>
             <div class="projects-hero-media" id="projectsHeroMedia">
@@ -257,8 +254,6 @@
                     titleEl.textContent = p.title;
                     descEl.textContent = p.description;
                     instaEl.href = p.instaHref;
-                    var storyLinkEl = document.getElementById('projectsStoryLink');
-                    if (storyLinkEl) storyLinkEl.style.display = index === 0 ? 'inline-flex' : 'none';
                     fallbackEl.src = p.poster;
                     fallbackEl.alt = '';
                     videoEl.pause();
@@ -309,8 +304,6 @@
                     titleEl.textContent = p.title;
                     descEl.textContent = p.description;
                     instaEl.href = p.instaHref;
-                    var storyLinkEl = document.getElementById('projectsStoryLink');
-                    if (storyLinkEl) storyLinkEl.style.display = index === 0 ? 'inline-flex' : 'none';
                     fallbackEl.src = p.poster;
                     fallbackEl.alt = '';
 

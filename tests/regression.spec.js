@@ -118,13 +118,6 @@ test.describe('index.html', () => {
   test('spray canvas is injected into the page', async ({ page }) => {
     await expect(page.locator('canvas.spray-canvas')).toBeAttached();
   });
-
-  test('FABRIK project shows story link', async ({ page }) => {
-    // FABRIK is the first (default) project
-    const link = page.locator('#projectsStoryLink');
-    await expect(link).toBeVisible();
-    await expect(link).toHaveAttribute('href', 'fabrik.html');
-  });
 });
 
 // ─────────────────────────────────────────────
@@ -202,28 +195,6 @@ test.describe('projects.html — Mail Club', () => {
 
   test('description section is present', async ({ page }) => {
     await expect(page.locator('.mail-club-description')).toBeVisible();
-  });
-});
-
-// ─────────────────────────────────────────────
-// fabrik.html
-// ─────────────────────────────────────────────
-test.describe('fabrik.html', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/fabrik.html');
-  });
-
-  test('has correct page title', async ({ page }) => {
-    await expect(page).toHaveTitle('FABRIK — PIEPPIEPSEPPL');
-  });
-
-  test('hero section is present with heading', async ({ page }) => {
-    await expect(page.locator('#fabrik-hero')).toBeVisible();
-    await expect(page.locator('.fabrik-hero-title')).toContainText('FABRIK');
-  });
-
-  test('mail club CTA link is present', async ({ page }) => {
-    await expect(page.locator('#fabrik-cta a, #fabrik-cta button')).toBeVisible();
   });
 });
 
