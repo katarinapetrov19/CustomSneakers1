@@ -3093,3 +3093,287 @@ footer.footer *,
     }
 }
 
+/* ─────────────────────────────────────────────
+   FABRIK story page
+   ───────────────────────────────────────────── */
+
+/* Hero */
+#fabrik-hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.fabrik-hero-video {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.fabrik-hero-title {
+    position: absolute;
+    bottom: 10vh;
+    left: -0.02em;
+    font-size: clamp(120px, 18vw, 260px);
+    font-family: 'PlaypenSans-ExtraBold', 'Playpen_Sans', sans-serif;
+    color: #fff;
+    line-height: 0.85;
+    margin: 0;
+    will-change: transform;
+    pointer-events: none;
+    mix-blend-mode: normal;
+    z-index: 2;
+}
+
+/* Story intro */
+#fabrik-story {
+    background: #f5f1eb;
+    padding: 8rem 2rem;
+    position: relative;
+    overflow: visible;
+}
+
+.fabrik-story-text {
+    transform: rotate(-1.5deg);
+    max-width: 550px;
+    margin-left: 8vw;
+    font-family: 'Caveat', cursive;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    line-height: 1.5;
+    font-style: italic;
+    border: none;
+    padding: 0;
+    color: #1a1a1a;
+    opacity: 0;
+    transform: rotate(-1.5deg) translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fabrik-story-text.fabrik-visible {
+    opacity: 1;
+    transform: rotate(-1.5deg) translateY(0);
+}
+
+.fabrik-story-artist {
+    position: absolute;
+    right: -40px;
+    top: -60px;
+    width: clamp(220px, 30vw, 380px);
+    transform: rotate(2deg);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+
+.fabrik-story-artist.fabrik-visible {
+    opacity: 1;
+    transform: rotate(2deg) translateY(0);
+}
+
+/* Process video (polaroid) */
+#fabrik-process {
+    padding: 4rem 2rem;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.fabrik-polaroid {
+    transform: rotate(-1deg);
+    background: #fff;
+    padding: 1.2rem 1.2rem 3rem;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.18);
+    max-width: 640px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fabrik-polaroid.fabrik-visible {
+    opacity: 1;
+    transform: rotate(-1deg) translateY(0);
+}
+
+.fabrik-polaroid video {
+    width: 100%;
+    display: block;
+}
+
+.fabrik-polaroid-caption {
+    text-align: center;
+    margin: 1rem 0 0;
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: #555;
+}
+
+/* Scatter gallery */
+#fabrik-gallery {
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.fabrik-scatter-img {
+    display: block;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fabrik-scatter-img.fabrik-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fabrik-scatter-img:hover {
+    transform: rotate(0deg) scale(1.02) translateY(-4px);
+}
+
+.fabrik-scatter-grafiti {
+    width: 45%;
+    margin-left: 3%;
+    transform: rotate(-3deg) translateY(40px);
+}
+
+.fabrik-scatter-grafiti.fabrik-visible {
+    transform: rotate(-3deg) translateY(0);
+}
+
+.fabrik-scatter-grafiti:hover {
+    transform: rotate(-2deg) scale(1.02) translateY(-4px);
+}
+
+.fabrik-scatter-bw {
+    width: 40%;
+    margin-left: auto;
+    margin-right: 3%;
+    margin-top: -80px;
+    transform: rotate(2deg) translateY(40px);
+}
+
+.fabrik-scatter-bw.fabrik-visible {
+    transform: rotate(2deg) translateY(0);
+}
+
+.fabrik-scatter-bw:hover {
+    transform: rotate(3deg) scale(1.02) translateY(-4px);
+}
+
+.fabrik-scatter-main {
+    width: 90%;
+    margin: 3rem auto;
+    transform: translateY(40px);
+}
+
+.fabrik-scatter-main.fabrik-visible {
+    transform: translateY(0);
+}
+
+.fabrik-scatter-main:hover {
+    transform: scale(1.01) translateY(-4px);
+}
+
+.fabrik-scatter-kat {
+    width: 35%;
+    margin-left: 8%;
+    transform: rotate(-1deg) translateY(40px);
+}
+
+.fabrik-scatter-kat.fabrik-visible {
+    transform: rotate(-1deg) translateY(0);
+}
+
+.fabrik-scatter-kat:hover {
+    transform: rotate(-0.5deg) scale(1.02) translateY(-4px);
+}
+
+/* Statement */
+#fabrik-statement {
+    background: #111;
+    padding: 8rem 2rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.fabrik-statement-text {
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 5rem);
+    letter-spacing: 0.2em;
+    font-style: italic;
+    margin: 0;
+    transition: opacity 0.8s ease, letter-spacing 0.8s ease;
+}
+
+.fabrik-statement-text.pre-anim {
+    opacity: 0;
+    letter-spacing: 0.8em;
+}
+
+/* Mail Club CTA */
+#fabrik-cta {
+    background: #f5f1eb;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.fabrik-cta-heading {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.fabrik-cta-sub {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2.5rem;
+}
+
+.fabrik-cta-btn {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+/* Story link in projects carousel */
+.projects-story-link {
+    display: none;
+    margin-top: 1.5rem;
+    color: #fff;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.projects-story-link:hover {
+    opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .fabrik-story-artist {
+        position: static;
+        width: 80%;
+        margin: 2rem auto;
+        transform: rotate(2deg);
+        display: block;
+    }
+
+    .fabrik-story-artist.fabrik-visible {
+        transform: rotate(2deg);
+    }
+
+    .fabrik-story-text {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .fabrik-scatter-bw {
+        margin-top: 2rem;
+    }
+}
+
