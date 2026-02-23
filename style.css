@@ -3097,11 +3097,11 @@ footer.footer *,
    Logo → Hamburger → Fullscreen Nav Menu
    ===================================================== */
 
-/* Button container — circular, white, same size as SVG badge */
+/* Button container — circular, matches the 133×133 SVG badge */
 .logo-menu-btn {
     position: relative;
-    width: 52px;
-    height: 52px;
+    width: 133px;
+    height: 133px;
     background: #fff;
     border: none;
     border-radius: 50%;
@@ -3112,12 +3112,13 @@ footer.footer *,
     justify-content: center;
     overflow: hidden;
     flex-shrink: 0;
+    outline: none;
 }
 
 /* Logo image fades out on hover / when menu is open */
 .logo-menu-btn .logo-img {
-    width: 52px;
-    height: 52px;
+    width: 133px;
+    height: 133px;
     display: block;
     transition: opacity 0.3s ease, transform 0.3s ease;
     position: relative;

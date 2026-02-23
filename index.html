@@ -951,6 +951,9 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeMenu();
         });
+        menu.querySelectorAll('a').forEach(function(a) {
+            a.addEventListener('click', closeMenu);
+        });
     })();
 
     </script>
