@@ -3196,7 +3196,8 @@ footer.footer *,
     z-index: 9001;
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem 8vw 0 calc(60px + 133px + 2rem + 60px);
+    justify-content: center;
+    padding: 5vh 8vw 5vh calc(60px + 133px + 2rem + 60px);
     transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
     will-change: transform;
@@ -3213,7 +3214,8 @@ footer.footer *,
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    height: 90vh;
 }
 
 .menu-links li {
@@ -3236,7 +3238,7 @@ footer.footer *,
 .menu-links a {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    font-size: calc((90vh - 8rem) / 5);
+    font-size: 18vh;
     font-style: italic;
     color: #fff;
     text-decoration: none;
