@@ -3236,6 +3236,7 @@ footer.footer *,
 .menu-links a {
     font-family: 'PlaypenSans-Bold', 'Playpen_Sans', sans-serif;
     font-size: clamp(2.1rem, 5.6vw, 4.9rem);
+    font-style: italic;
     color: #fff;
     text-decoration: none;
     display: block;
