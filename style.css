@@ -3227,6 +3227,7 @@ footer.footer *,
 #fullscreen-menu.is-open .menu-links li:nth-child(2) { transition-delay: 0.22s; }
 #fullscreen-menu.is-open .menu-links li:nth-child(3) { transition-delay: 0.29s; }
 #fullscreen-menu.is-open .menu-links li:nth-child(4) { transition-delay: 0.36s; }
+#fullscreen-menu.is-open .menu-links li:nth-child(5) { transition-delay: 0.43s; }
 
 .menu-links a {
     font-family: 'PlaypenSans-Bold', 'Playpen_Sans', sans-serif;
