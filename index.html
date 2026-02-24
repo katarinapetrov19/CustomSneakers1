@@ -255,7 +255,6 @@
             let isTransitioning = false;
             var emptyScrollsNeededBeforeContact = 1;
             var emptyScrollCount = 0;
-            var didEmptyScrollOnFirst = false;
             var CONTENT_OUT_MS = 420;
             var LOCK_MS = 1100;
 
@@ -369,7 +368,9 @@
                     if (entry.isIntersecting) {
                         section.classList.add('is-in-view');
                         currentIndex = Math.min(projects.length - 1, Math.max(0, currentIndex));
-                        applyProject(currentIndex);
+                        // Only re-apply if not already initialized (avoids double transition on first load)
+                        var alreadyInit = bgElA.classList.contains('is-visible') || bgElB.classList.contains('is-visible');
+                        if (!alreadyInit) applyProject(currentIndex);
                     } else {
                         section.classList.remove('is-in-view');
                     }
@@ -382,14 +383,6 @@
                 if (!sectionInView) return;
                 e.preventDefault();
                 if (isTransitioning) return;
-
-                if (e.deltaY > 0 && currentIndex === 0) {
-                    if (!didEmptyScrollOnFirst) {
-                        didEmptyScrollOnFirst = true;
-                        return;
-                    }
-                }
-                if (e.deltaY < 0 && currentIndex === 1) didEmptyScrollOnFirst = false;
 
                 if (e.deltaY > 0 && currentIndex === projects.length - 1) {
                     if (emptyScrollCount < emptyScrollsNeededBeforeContact) {
