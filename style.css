@@ -57,7 +57,8 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Playpen_Sans', 'DM Sans', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -3252,5 +3253,33 @@ footer.footer *,
 .menu-links a:hover {
     color: rgba(255, 255, 255, 0.5);
     transform: translateX(12px);
+}
+
+/* =====================================================
+   Arial Italic for all content titles
+   (hero-large-title excluded — keeps PlaypenSans)
+   ===================================================== */
+.section-title,
+.projects-title,
+.current-project-title,
+.latest-project-title,
+.gallery-title-carousel .gallery-title,
+.project-title,
+.mail-club-subtitle,
+.description-title,
+.faq-title,
+.project-card-title,
+.home-about-text h3,
+.gallery-item h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+}
+
+/* Keep hero large title in PlaypenSans */
+.hero-large-title,
+.hero-large-title .line-1,
+.hero-large-title .line-2 {
+    font-family: 'PlaypenSans-ExtraBold', 'PlaypenSans-Bold', 'Playpen_Sans', sans-serif;
+    font-style: normal;
 }
 
