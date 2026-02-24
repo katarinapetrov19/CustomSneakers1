@@ -3186,13 +3186,10 @@ footer.footer *,
     pointer-events: auto;
 }
 
-/* Left drawer menu panel */
+/* Fullscreen menu panel — slides in from left */
 #fullscreen-menu {
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: min(480px, 80vw);
+    inset: 0;
     background: #111;
     z-index: 9001;
     display: flex;
@@ -3236,7 +3233,7 @@ footer.footer *,
 
 .menu-links a {
     font-family: 'PlaypenSans-Bold', 'Playpen_Sans', sans-serif;
-    font-size: clamp(3rem, 8vw, 7rem);
+    font-size: clamp(2.1rem, 5.6vw, 4.9rem);
     color: #fff;
     text-decoration: none;
     display: block;
