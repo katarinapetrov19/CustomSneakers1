@@ -2780,7 +2780,7 @@ footer.footer *,
     display: flex;
     flex-direction: column;
     border: 1.5px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
+    border-radius: 9999px;
     overflow: hidden;
 }
 
@@ -2845,7 +2845,7 @@ footer.footer *,
     width: 100%;
     padding: 0.55rem 0.75rem;
     border: 1.5px solid rgba(255, 255, 255, 0.15);
-    border-radius: 6px;
+    border-radius: 9999px;
     font-size: 0.9rem;
     font-family: 'DM Sans', sans-serif;
     color: #ffffff;
