@@ -3236,7 +3236,7 @@ footer.footer *,
 .menu-links a {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    font-size: clamp(2.1rem, 5.6vw, 4.9rem);
+    font-size: calc((90vh - 8rem) / 5);
     font-style: italic;
     color: #fff;
     text-decoration: none;
