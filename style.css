@@ -3175,8 +3175,10 @@ footer.footer *,
     position: fixed;
     inset: 0;
     z-index: 9000;
+    background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
 #nav-overlay.is-open {
@@ -3184,10 +3186,13 @@ footer.footer *,
     pointer-events: auto;
 }
 
-/* Fullscreen menu panel — slides in from left */
+/* Left drawer menu panel */
 #fullscreen-menu {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(480px, 80vw);
     background: #111;
     z-index: 9001;
     display: flex;
@@ -3237,6 +3242,7 @@ footer.footer *,
     display: block;
     line-height: 1;
     letter-spacing: -0.02em;
+    text-transform: uppercase;
     transition: color 0.2s ease, transform 0.2s ease;
 }
 
