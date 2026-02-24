@@ -1211,22 +1211,21 @@ a.gallery-item {
     justify-content: center;
     padding: 2rem;
     box-sizing: border-box;
-    background: #f5f5f5;
-    color: #2a2a2a;
+    background: #000;
+    color: #fff;
     text-align: center;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
     scroll-snap-align: start;
     scroll-snap-stop: always;
 }
 
 .contact .section-title {
-    color: #2a2a2a;
+    color: #fff;
     font-size: 2.5rem;
     margin-bottom: 3rem;
 }
 
 .contact .section-title::after {
-    background: #2a2a2a;
+    background: #fff;
 }
 
 .contact-subtitle {
@@ -1248,15 +1247,14 @@ a.gallery-item {
     gap: 0.8rem;
     padding: 1rem 2.5rem;
     background-color: transparent;
-    color: #2a2a2a;
+    color: #fff;
     text-decoration: none;
-    border: 1px solid #2a2a2a;
-    border-radius: 0;
+    border: 1px solid #fff;
+    border-radius: 9999px;
     font-weight: 400;
     font-size: 0.95rem;
     letter-spacing: 1px;
     transition: all 0.4s ease;
-    margin-bottom: 3rem;
 }
 
 .instagram-link svg {
@@ -1265,8 +1263,8 @@ a.gallery-item {
 }
 
 .instagram-link:hover {
-    background-color: #2a2a2a;
-    color: #fafafa;
+    background-color: #fff;
+    color: #000;
     transform: translateY(-2px);
 }
 
