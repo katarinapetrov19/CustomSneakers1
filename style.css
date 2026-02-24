@@ -3100,6 +3100,7 @@ footer.footer *,
 /* Button container — circular, matches the 133×133 SVG badge */
 .logo-menu-btn {
     position: relative;
+    z-index: 9002; /* always above the open menu (9001) */
     width: 133px;
     height: 133px;
     background: #fff;
