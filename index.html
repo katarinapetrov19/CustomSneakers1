@@ -243,7 +243,7 @@
                     videoMp4: 'img/NIOAA.mp4',
                     videoMov: '',
                     poster: 'img/NIOAA.jpg',
-                    title: 'Live Painting @ NIOAA',
+                    title: 'Live Painting<br>@ NIOAA',
                     description: 'Custom sneakers and wearables inspired by natural forms, organic textures, and the outdoors. Designed to bring a piece of the wild into everyday style.',
                     instaHref: 'https://www.instagram.com/'
                 }
@@ -267,7 +267,7 @@
                     bgElA.style.backgroundImage = 'url(' + p.bgImage + ')';
                     bgElA.classList.add('is-visible');
                     bgVisible = 'a';
-                    titleEl.textContent = p.title;
+                    titleEl.innerHTML = p.title;
                     descEl.textContent = p.description;
                     instaEl.href = p.instaHref;
                     fallbackEl.src = p.poster;
@@ -317,7 +317,7 @@
                 }
 
                 setTimeout(function() {
-                    titleEl.textContent = p.title;
+                    titleEl.innerHTML = p.title;
                     descEl.textContent = p.description;
                     instaEl.href = p.instaHref;
                     fallbackEl.src = p.poster;
