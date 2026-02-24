@@ -3196,7 +3196,7 @@ footer.footer *,
     z-index: 9001;
     display: flex;
     align-items: flex-start;
-    padding: 1.5rem 8vw 0 calc(60px + 133px + 2rem);
+    padding: 1.5rem 8vw 0 calc(60px + 133px + 2rem + 30px);
     transform: translateX(-100%);
     transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
     will-change: transform;
