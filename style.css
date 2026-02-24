@@ -110,7 +110,7 @@ section {
     top: 0;
     width: 100%;
     background-color: transparent;
-    z-index: 1000;
+    z-index: 9002;
     padding: 1.5rem 0;
     transition: all 0.3s ease;
 }
@@ -3100,7 +3100,6 @@ footer.footer *,
 /* Button container — circular, matches the 133×133 SVG badge */
 .logo-menu-btn {
     position: relative;
-    z-index: 9002; /* always above the open menu (9001) */
     width: 133px;
     height: 133px;
     background: #fff;
