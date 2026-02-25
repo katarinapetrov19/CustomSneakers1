@@ -2790,7 +2790,7 @@ footer.footer *,
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
-    padding: 0.3rem 1rem;
+    padding: calc(0.55rem - 3px) 1rem;
     cursor: pointer;
     border-radius: 9999px;
     transition: background 0.2s ease, color 0.2s ease;
