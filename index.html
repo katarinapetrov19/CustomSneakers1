@@ -136,33 +136,30 @@
     <div id="subscribe-overlay" aria-hidden="true"></div>
     <div id="subscribe-sheet" role="dialog" aria-modal="true" aria-label="Subscribe to Mail Club">
         <button id="subscribe-close" aria-label="Close">&times;</button>
-        <h2 class="subscribe-sheet-heading">How many artworks would you like to receive monthly?</h2>
-        <div class="artwork-count-group" role="group" aria-label="Number of artworks">
-            <button class="artwork-count-btn is-selected" data-count="1">
-                <span class="artwork-count-label">1 artwork</span>
-                <span class="artwork-count-price">8€/month</span>
-            </button>
-            <button class="artwork-count-btn" data-count="2">
-                <span class="artwork-count-label">2 artworks</span>
-                <span class="artwork-count-price">11€/month</span>
-            </button>
-            <button class="artwork-count-btn" data-count="3">
-                <span class="artwork-count-label">3 artworks</span>
-                <span class="artwork-count-price">15€/month</span>
-            </button>
-        </div>
-        <p class="subscribe-price-display">8€ / month</p>
         <div class="subscribe-toggle">
             <label class="subscribe-toggle-option">
                 <input type="radio" name="purchase-type" value="subscribe" checked>
                 <span class="subscribe-toggle-label">Subscribe</span>
-                <span class="subscribe-toggle-price" id="toggleSubPrice">8€/month</span>
             </label>
             <label class="subscribe-toggle-option">
                 <input type="radio" name="purchase-type" value="one-time">
                 <span class="subscribe-toggle-label">One-time</span>
-                <span class="subscribe-toggle-price" id="toggleOnePrice">8€</span>
             </label>
+        </div>
+        <h2 class="subscribe-sheet-heading">Choose your plan</h2>
+        <div class="artwork-count-group" role="group" aria-label="Number of artworks">
+            <button class="artwork-count-btn is-selected" data-count="1">
+                <span class="artwork-count-label">1 artwork</span>
+                <span class="artwork-count-price">8€/mo</span>
+            </button>
+            <button class="artwork-count-btn" data-count="2">
+                <span class="artwork-count-label">2 artworks</span>
+                <span class="artwork-count-price">11€/mo</span>
+            </button>
+            <button class="artwork-count-btn" data-count="3">
+                <span class="artwork-count-label">3 artworks</span>
+                <span class="artwork-count-price">15€/mo</span>
+            </button>
         </div>
         <div class="subscribe-fields">
             <div class="subscribe-fields-row">
@@ -762,9 +759,6 @@
         var sheet        = document.getElementById('subscribe-sheet');
         var closeBtn     = document.getElementById('subscribe-close');
         var countBtns    = document.querySelectorAll('.artwork-count-btn');
-        var priceDisplay = document.querySelector('.subscribe-price-display');
-        var toggleSubPrice = document.getElementById('toggleSubPrice');
-        var toggleOnePrice = document.getElementById('toggleOnePrice');
         var purchaseTypeRadios = document.querySelectorAll('input[name="purchase-type"]');
         var paypalContainer = document.getElementById('paypal-button-container');
         var paypalMessage   = document.getElementById('paypal-message');
@@ -772,12 +766,16 @@
         if (!overlay || !sheet) return;
 
         function updatePriceDisplay() {
-            var price = PRICES[selectedCount];
-            priceDisplay.textContent = purchaseType === 'subscribe'
-                ? price.monthly
-                : price.display + ' (one-time)';
-            toggleSubPrice.textContent = price.display + '/month';
-            toggleOnePrice.textContent = price.display;
+            countBtns.forEach(function(btn) {
+                var count = parseInt(btn.dataset.count);
+                var p = PRICES[count];
+                var priceSpan = btn.querySelector('.artwork-count-price');
+                if (priceSpan) {
+                    priceSpan.textContent = purchaseType === 'subscribe'
+                        ? p.display + '/mo'
+                        : p.display;
+                }
+            });
         }
 
         function validateFields() {
@@ -865,7 +863,7 @@
 
         function showSuccessMessage(msg) {
             // Hide all sheet content and show only the success state
-            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-price-display, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
                 el.style.display = 'none';
             });
             paypalMessage.textContent = '\u2713 ' + msg;
@@ -880,7 +878,7 @@
 
         function openSheet() {
             // Restore any hidden elements from previous success state
-            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-price-display, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
                 el.style.display = '';
             });
             sheet.classList.add('is-open');
