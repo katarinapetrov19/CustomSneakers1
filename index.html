@@ -136,6 +136,8 @@
     <div id="subscribe-overlay" aria-hidden="true"></div>
     <div id="subscribe-sheet" role="dialog" aria-modal="true" aria-label="Subscribe to Mail Club">
         <button id="subscribe-close" aria-label="Close">&times;</button>
+        <h2 class="subscribe-main-title">Subscribe to my Mail Club</h2>
+        <p class="subscribe-section-label">Monthly or one-time?</p>
         <div class="subscribe-toggle">
             <label class="subscribe-toggle-option">
                 <input type="radio" name="purchase-type" value="subscribe" checked>
@@ -146,7 +148,7 @@
                 <span class="subscribe-toggle-label">One-time</span>
             </label>
         </div>
-        <h2 class="subscribe-sheet-heading">Choose your plan</h2>
+        <p class="subscribe-section-label">Choose your plan</p>
         <div class="artwork-count-group" role="group" aria-label="Number of artworks">
             <button class="artwork-count-btn is-selected" data-count="1">
                 <span class="artwork-count-label">1 artwork</span>
@@ -863,7 +865,7 @@
 
         function showSuccessMessage(msg) {
             // Hide all sheet content and show only the success state
-            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+            sheet.querySelectorAll('.subscribe-main-title, .subscribe-section-label, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
                 el.style.display = 'none';
             });
             paypalMessage.textContent = '\u2713 ' + msg;
@@ -878,7 +880,7 @@
 
         function openSheet() {
             // Restore any hidden elements from previous success state
-            sheet.querySelectorAll('.subscribe-sheet-heading, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
+            sheet.querySelectorAll('.subscribe-main-title, .subscribe-section-label, .artwork-count-group, .subscribe-toggle, .subscribe-fields, #paypal-button-container').forEach(function (el) {
                 el.style.display = '';
             });
             sheet.classList.add('is-open');
