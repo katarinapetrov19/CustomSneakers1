@@ -2741,6 +2741,7 @@ footer.footer *,
 }
 
 .artwork-count-btn {
+    flex: 1;
     padding: 0.55rem 1rem;
     border-radius: 9999px;
     border: 1.5px solid rgba(255, 255, 255, 0.25);
