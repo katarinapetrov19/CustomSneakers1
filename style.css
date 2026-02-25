@@ -2786,10 +2786,10 @@ footer.footer *,
 .subscribe-toggle-option {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 0;
+    gap: 0.3rem;
     padding: 0.3rem 1rem;
     cursor: pointer;
     border-radius: 9999px;
